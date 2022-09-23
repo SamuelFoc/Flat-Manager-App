@@ -1,0 +1,28 @@
+.productCard {
+  background-color: var(--dark-color);
+  border-radius: 5px;
+  min-width: 300px;
+}
+.productCardOwner {
+  font-size: 0.85rem;
+}
+.productCardTitle {
+  font-size: 0.85rem;
+}
+.productCardText {
+  margin: 0;
+  font-size: 16px;
+}
+.productCardFor {
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+.corner-position {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+}
+.config {
+  font-size: 16px;
+}

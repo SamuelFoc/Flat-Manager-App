@@ -1,0 +1,64 @@
+.respBox {
+  display: flex;
+  width: 100vw;
+  overflow: auto;
+  color: var(--text-lighter-color);
+  background-color: rgba(255, 255, 255, 0.075);
+  backdrop-filter: blur(7px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.178);
+  max-height: 65vh;
+}
+@media only screen and (max-width: 1068px) {
+  .respBox {
+    justify-content: start;
+  }
+}
+
+.respCard {
+  background-color: rgba(0, 0, 0, 0.438);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.respTitle-critical {
+  font-size: 1.5rem;
+  color: rgb(219, 84, 84);
+}
+.respTitle-high {
+  font-size: 1.5rem;
+  color: orange;
+}
+.respTitle-low {
+  font-size: 1.5rem;
+  color: rgb(0, 162, 255);
+}
+
+.respDescription {
+  font-size: 0.8rem;
+}
+
+.respDate-critical {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: rgb(219, 84, 84);
+}
+.respDate-high {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: orange;
+}
+.respDate-low {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: rgb(0, 162, 255);
+}
+
+.respDoneIcon-cross {
+  font-size: 1.2rem;
+  color: rgb(219, 84, 84);
+}
+
+.respDoneIcon-check {
+  font-size: 1.2rem;
+  color: rgb(38, 194, 7);
+}

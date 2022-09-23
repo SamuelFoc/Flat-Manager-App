@@ -1,0 +1,45 @@
+.menuBox {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100vw;
+  overflow: auto;
+  color: var(--text-color);
+  background-color: rgba(255, 255, 255, 0.075);
+  backdrop-filter: blur(7px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.178);
+}
+
+@media only screen and (max-width: 1568px) {
+  .menuBox {
+    justify-content: start;
+  }
+}
+
+.menuItem {
+  background-color: var(--dark-color);
+  min-width: 10rem;
+  height: 10rem;
+  border-radius: 5px;
+  position: relative;
+  transition: 0.4s;
+}
+.menuItem:hover {
+  transform: scale(1.03, 1.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.548);
+  border-bottom: 5px solid var(--accent-color);
+  cursor: pointer;
+  transform: rotate3d(-1, 1, 0, 25deg);
+}
+
+.menuItemIcon {
+  color: var(--lighter-text-color);
+}
+
+.menuItemTitle {
+  color: var(--lighter-text-color);
+  position: absolute;
+  bottom: 0.5rem;
+  left: 1rem;
+  font-size: 0.85rem;
+}

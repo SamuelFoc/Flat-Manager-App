@@ -1,0 +1,33 @@
+.usersBox {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
+  overflow: auto;
+  color: var(--text-lighter-color);
+  background-color: rgba(255, 255, 255, 0.075);
+  backdrop-filter: blur(7px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.178);
+  max-height: 65vh;
+}
+@media only screen and (max-width: 1068px) {
+  .usersBox {
+    justify-content: start;
+  }
+}
+.userCard {
+  background-color: var(--dark-color);
+  border-radius: 5px;
+  min-width: 300px;
+  max-width: fit-content;
+}
+
+.userCardText {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.userCardTitle {
+  font-size: 1rem;
+  margin: 0;
+}
