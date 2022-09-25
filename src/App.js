@@ -1,24 +1,38 @@
-import Navbar from "./components/Navbar";
+import Layout from "./components/Layout";
+import Login from "./pages/LogIn";
 import UserHome from "./pages/UserHome";
 import Users from "./pages/Users";
 import Error from "./pages/Error";
+import RequireAuth from "./auth/RequireAuth";
+import Unauthorized from "./auth/Unauthorized";
 import ShoppingList from "./pages/ShoppingList";
 import Responsibilities from "./pages/Responsibilities";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Energies from "./pages/Energies";
+import { Routes, Route } from "react-router-dom";
+
+const ROLES = {
+  User: "User",
+  Editor: "Editor",
+  Admin: "Admin",
+};
 
 function App() {
   return (
     <div>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/home" element={<UserHome />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/shoppingList" element={<ShoppingList />} />
-          <Route path="/responsibilities" element={<Responsibilities />} />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Layout />}>
+          <Route path="/unauthorized" element={<Unauthorized />} />
+          <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
+            <Route path="/home" element={<UserHome />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/shoppingList" element={<ShoppingList />} />
+            <Route path="/responsibilities" element={<Responsibilities />} />
+            <Route path="/energies" element={<Energies />} />
+          </Route>
           <Route path="*" element={<Error />} />
-        </Routes>
-      </Router>
+        </Route>
+      </Routes>
     </div>
   );
 }
