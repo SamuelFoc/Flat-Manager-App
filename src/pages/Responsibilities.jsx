@@ -1,53 +1,52 @@
-import React from "react";
-import RespCard from "../components/RespCard";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTemperatureArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { faTemperatureThreeQuarters } from "@fortawesome/free-solid-svg-icons";
 import { faTemperatureQuarter } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import RespCard from "../components/RespCard";
 import HiddenForm from "../components/HiddenForm";
 
-export default function Home() {
-  const [myData, setMyData] = React.useState([]);
-  const [isShowedCreate, setIsShowedCreate] = React.useState(false);
-  const [newResp, setNewResp] = React.useState({
+export default function Responsibilities() {
+  // TODO: STATES
+  const [myData, setMyData] = useState([]);
+  const [Id, setId] = useState();
+  const [isShowedCreate, setIsShowedCreate] = useState(false);
+  const [newResp, setNewResp] = useState({
     title: "",
     description: "",
     deadline: "",
     priority: "",
   });
+  const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [whatChanged, setWhatChanged] = useState("");
 
-  const formInfo = {
-    submit: {
-      url: "http://localhost:4000/responsibilities/samo.sipikal@gmail.com",
-      method: "post",
-      data: newResp,
-    },
-    inputs: ["title", "description"],
-    dates: ["deadline"],
-    selections: [{ name: "priority", options: ["LOW", "HIGH", "CRITICAL"] }],
-    submitName: "CREATE",
-  };
-
-  React.useEffect(() => {
-    fetch("http://localhost:4000/responsibilities/samo.sipikal@gmail.com")
-      .then((res) => res.json())
-      .then((response) => {
-        setMyData(response.data);
-      });
-  }, []);
-
-  const low = myData.filter((item) => item.urgent === "LOW");
-  const high = myData.filter((item) => item.urgent === "HIGH");
-  const critical = myData.filter((item) => item.urgent === "CRITICAL");
-  const lowResps = low.map((resp) => <RespCard key={resp.id} info={resp} />);
-  const highResps = high.map((resp) => <RespCard key={resp.id} info={resp} />);
-  const criticalResps = critical.map((resp) => (
-    <RespCard key={resp.id} info={resp} />
-  ));
-
+  // TODO: HANDLERS
   const showFormCreate = () => {
     setIsShowedCreate(!isShowedCreate);
+    setId(false);
+    setWhatChanged("creation");
+  };
+
+  const deleteResp = (id) => {
+    axiosPrivate.delete(`/responsibilities/${id}`);
+    setId(false);
+    setWhatChanged(`${id} deleted`);
+  };
+
+  const updateRespStatus = async (id, isDone) => {
+    await axiosPrivate.put(
+      `/responsibilities/${id}`,
+      JSON.stringify({
+        done: !isDone,
+      })
+    );
+
+    setWhatChanged(`${id} updated..${Math.random()}`);
   };
 
   const handleChange = (event) => {
@@ -57,6 +56,47 @@ export default function Home() {
         [event.target.name]: event.target.value,
       };
     });
+  };
+
+  // TODO: EFFECTS
+  useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+
+    const getResps = async () => {
+      try {
+        const response = await axiosPrivate.get("/responsibilities");
+        isMounted && setMyData(response.data.data);
+      } catch (err) {
+        console.log(err);
+        navigate("/home", { state: { from: location }, replace: true });
+      }
+    };
+
+    getResps();
+
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+  }, [axiosPrivate, location, navigate, whatChanged]);
+
+  // * DATA HANDLERS
+  const low = myData.filter((item) => item.urgent === "LOW");
+  const high = myData.filter((item) => item.urgent === "HIGH");
+  const critical = myData.filter((item) => item.urgent === "CRITICAL");
+
+  // TODO: INFO OBJECTS
+  const formInfo = {
+    submit: {
+      url: Id ? `/responsibilities/${Id}` : "/responsibilities",
+      method: Id ? "put" : "post",
+      data: newResp,
+    },
+    inputs: ["title", "description"],
+    dates: ["deadline"],
+    selections: [{ name: "priority", options: ["LOW", "HIGH", "CRITICAL"] }],
+    submitName: "CREATE",
   };
 
   return (
@@ -80,8 +120,15 @@ export default function Home() {
               />
             </h3>
             <div className="row m-2">
-              {criticalResps ? (
-                criticalResps
+              {critical?.length ? (
+                critical.map((resp) => (
+                  <RespCard
+                    key={resp.id}
+                    info={resp}
+                    handleEdit={updateRespStatus}
+                    handleDelete={deleteResp}
+                  />
+                ))
               ) : (
                 <h6>No critical responsibilities</h6>
               )}
@@ -96,7 +143,18 @@ export default function Home() {
               />
             </h3>
             <div className="row m-2">
-              {highResps ? highResps : <h6>No high responsibilities</h6>}
+              {high?.length ? (
+                high.map((resp) => (
+                  <RespCard
+                    key={resp.id}
+                    info={resp}
+                    handleEdit={updateRespStatus}
+                    handleDelete={deleteResp}
+                  />
+                ))
+              ) : (
+                <h6>No high priority responsibilities</h6>
+              )}
             </div>
           </div>
           <div className="col-12 col-md-8 col-xl-6 col-xxl-4 p-2 ">
@@ -108,7 +166,18 @@ export default function Home() {
               />
             </h3>
             <div className="row m-2">
-              {lowResps ? lowResps : <h6>No low responsibilities</h6>}
+              {low?.length ? (
+                low.map((resp) => (
+                  <RespCard
+                    key={resp.id}
+                    info={resp}
+                    handleEdit={updateRespStatus}
+                    handleDelete={deleteResp}
+                  />
+                ))
+              ) : (
+                <h6>No low priority responsibilities</h6>
+              )}
             </div>
           </div>
         </div>
@@ -120,6 +189,7 @@ export default function Home() {
           formInfo={formInfo}
           showForm={showFormCreate}
           handleChange={handleChange}
+          whatChanged={setWhatChanged}
         />
       )}
     </div>

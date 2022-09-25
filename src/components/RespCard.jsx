@@ -5,41 +5,8 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faRepeat } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import qs from "qs";
-import Axios from "axios";
 
 function RespCard(props) {
-  const handleIsDone = (id) => {
-    var data = qs.stringify({
-      done: !props.info.done,
-    });
-
-    var config = {
-      method: "put",
-      url: `http://localhost:4000/responsibilities/samo.sipikal@gmail.com/${id}`,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      data: data,
-    };
-
-    Axios(config)
-      .catch(function (error) {
-        console.log(error);
-      })
-      .then(() => {
-        window.location.reload();
-      });
-  };
-
-  const handleDelete = (id) => {
-    Axios.delete(
-      `http://localhost:4000/responsibilities/samo.sipikal@gmail.com/${id}`
-    ).then(() => {
-      window.location.reload();
-    });
-  };
-
   const checkClass = (data) => {
     let myClass;
 
@@ -64,31 +31,26 @@ function RespCard(props) {
         </div>
         <div className="col-6 d-flex justify-content-end">
           {props.info.done ? (
-            <button className="btn btn-outline-warning">
-              <FontAwesomeIcon
-                icon={faRepeat}
-                className="fs-6"
-                onClick={() => {
-                  handleIsDone(props.info.id);
-                }}
-              />
+            <button
+              className="btn btn-outline-warning"
+              onClick={() => props.handleEdit(props.info.id, props.info.done)}
+            >
+              <FontAwesomeIcon icon={faRepeat} className="fs-6" />
             </button>
           ) : (
-            <button className="btn btn-outline-success">
-              <FontAwesomeIcon
-                icon={faCheck}
-                className="fs-6"
-                onClick={() => {
-                  handleIsDone(props.info.id);
-                }}
-              />
+            <button
+              className="btn btn-outline-success"
+              onClick={() => props.handleEdit(props.info.id, props.info.done)}
+            >
+              <FontAwesomeIcon icon={faCheck} className="fs-6" />
             </button>
           )}
-          <button type="button" className="btn btn-dark">
-            <FontAwesomeIcon
-              icon={faTrashAlt}
-              onClick={() => handleDelete(props.info.id)}
-            />
+          <button
+            type="button"
+            className="btn btn-dark"
+            onClick={() => props.handleDelete(props.info.id)}
+          >
+            <FontAwesomeIcon icon={faTrashAlt} />
           </button>
         </div>
       </div>
