@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron&display=swap");
+.login-section {
+  background-color: rgba(0, 0, 0, 0.603);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.418);
+  padding: 1rem 2rem;
+  color: rgb(209, 209, 209);
+  border-radius: 5px;
+  position: relative;
+}
+
+.login-form {
+  margin: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-bcg-logo {
+  position: absolute;
+  z-index: -1;
+  color: rgb(156, 11, 185);
+  bottom: -45%;
+  left: -140%;
+}
+
+.login-bcg-logo h1 {
+  font-size: 8rem;
+  font-family: "Audiowide", cursive;
+  opacity: 0.15;
+}
+
+.login-logo {
+  position: absolute;
+  left: calc(50% - 45px);
+  top: -90px;
+  background-color: rgba(0, 0, 0, 0.678);
+  padding: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.568);
+  border-radius: 30px 30px 30px 0;
+}
+
+.errmsg {
+  background-color: rgb(252, 160, 160);
+  color: rgba(255, 0, 0, 0.801);
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 15px;
+  border-radius: 15px 15px 5px 5px;
+}
+
+.offscreen {
+  position: absolute;
+  z-index: -1;
+  visibility: hidden;
+}
+
+.login-form > input {
+  font-size: 20px;
+}
+
+.login-form > button {
+  margin: 0 50px;
+}
+
+.errMsg-xMark {
+  position: absolute;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.342);
+  top: 15px;
+  right: 45px;
+}
+.errMsg-xMark:hover {
+  cursor: pointer;
+}
