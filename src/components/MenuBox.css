@@ -1,7 +1,7 @@
 .menuBox {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   width: 100vw;
   overflow: auto;
   color: var(--text-color);
@@ -12,7 +12,7 @@
 
 @media only screen and (max-width: 1568px) {
   .menuBox {
-    justify-content: start;
+    justify-content: flex-start;
   }
 }
 
