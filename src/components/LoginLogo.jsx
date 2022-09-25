@@ -1,6 +1,6 @@
-function Logo() {
+function LoginLogo() {
   return (
-    <div className="ms-3">
+    <div className="login-logo">
       <svg
         width="60"
         viewBox="0 0 212 171"
@@ -72,4 +72,4 @@ function Logo() {
   );
 }
 
-export default Logo;
+export default LoginLogo;
