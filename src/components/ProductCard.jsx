@@ -7,13 +7,6 @@ import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 function ProductCard(props) {
-  const handleDelete = (id) => {
-    fetch(`http://localhost:4000/products/${"samo.sipikal@gmail.com"}/${id}`, {
-      method: "DELETE",
-    });
-    window.location.reload();
-  };
-
   return (
     <div className="productCard p-3 color-light mx-3 my-2 position-relative">
       <span className="corner-position">
@@ -25,7 +18,7 @@ function ProductCard(props) {
         <FontAwesomeIcon
           icon={faCheck}
           className="config color-light ms-2 btn btn-outline-success"
-          onClick={() => handleDelete(props.info.id)}
+          onClick={() => props.handleDelete(props.info.id)}
         />
       </span>
       <div className="d-flex">

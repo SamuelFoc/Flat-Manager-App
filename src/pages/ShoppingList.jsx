@@ -1,22 +1,47 @@
 import React from "react";
-import { useState } from "react";
-import ProductCard from "../components/ProductCard";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import HiddenForm from "../components/HiddenForm";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import ProductCard from "../components/ProductCard";
 
-export default function Home() {
-  const [myData, setMyData] = React.useState([]);
+export default function ShoppingList() {
+  // TODO: STATES
   const [isShowedCreate, setIsShowedCreate] = useState(false);
-  const [isShowedEdit, setIsShowedEdit] = useState(false);
-  const [editId, setEditId] = useState();
+  const [Id, setId] = useState();
+  const [whatChanged, setWhatChanged] = useState("");
   const [newProduct, setNewProduct] = useState({
     name: "",
     owner: "",
     priority: "",
-    price: "",
+    price: null,
     type: "",
   });
+  const [products, setProducts] = useState();
+  const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // TODO: HANDLERS
+  const deleteProduct = (id) => {
+    axiosPrivate.delete(`/products/${id}`);
+    setId(false);
+    setWhatChanged(`${id} deleted`);
+  };
+
+  const showFormCreate = () => {
+    setIsShowedCreate(!isShowedCreate);
+    setId(false);
+    setWhatChanged("creation");
+  };
+
+  const showFormEdit = (id) => {
+    setIsShowedCreate(!isShowedCreate);
+    setId(id);
+    setWhatChanged("edit");
+  };
 
   const handleChange = (event) => {
     setNewProduct((prevFormData) => {
@@ -27,10 +52,34 @@ export default function Home() {
     });
   };
 
+  // TODO: EFFECTS
+  useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+
+    const getProducts = async () => {
+      try {
+        const response = await axiosPrivate.get("/products");
+        isMounted && setProducts(response.data.data);
+      } catch (err) {
+        console.log(err);
+        navigate("/home", { state: { from: location }, replace: true });
+      }
+    };
+
+    getProducts();
+
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+  }, [axiosPrivate, location, navigate, whatChanged]);
+
+  // TODO: INFO OBJECTS
   const formInfo = {
     submit: {
-      url: "http://localhost:4000/products/samo.sipikal@gmail.com",
-      method: "post",
+      url: Id ? `/products/${Id}` : "/products",
+      method: Id ? "put" : "post",
       data: newProduct,
     },
     inputs: ["name", "owner", "price"],
@@ -49,50 +98,8 @@ export default function Home() {
         ],
       },
     ],
-    submitName: "CREATE",
+    submitName: Id ? "EDIT" : "CREATE",
   };
-
-  const formEditInfo = {
-    submit: {
-      url: `http://localhost:4000/products/samo.sipikal@gmail.com/${editId}`,
-      method: "put",
-      data: newProduct,
-    },
-    inputs: ["name", "owner", "price"],
-    dates: [],
-    selections: [
-      { name: "priority", options: ["LOW", "HIGH", "CRITICAL"] },
-      {
-        name: "type",
-        options: [
-          "Kitchen",
-          "Bathroom",
-          "Bedroom",
-          "Toilet",
-          "Free Time",
-          "Food",
-        ],
-      },
-    ],
-    submitName: "EDIT",
-  };
-
-  const showFormCreate = () => {
-    setIsShowedCreate(!isShowedCreate);
-  };
-
-  const showFormEdit = (id) => {
-    setIsShowedEdit(!isShowedEdit);
-    setEditId(id);
-  };
-
-  React.useEffect(() => {
-    fetch(`http://localhost:4000/products/${"samo.sipikal@gmail.com"}`)
-      .then((res) => res.json())
-      .then((response) => {
-        setMyData(response.data);
-      });
-  }, []);
 
   return (
     <div>
@@ -105,26 +112,25 @@ export default function Home() {
         />
       </h3>
       <div className="mainGlass mt-3 py-5">
-        {myData.map((product) => (
-          <ProductCard
-            key={product.id}
-            info={product}
-            handleEdit={showFormEdit}
-          />
-        ))}
+        {products?.length ? (
+          products.map((product, i) => (
+            <ProductCard
+              key={i}
+              info={product}
+              handleEdit={showFormEdit}
+              handleDelete={deleteProduct}
+            />
+          ))
+        ) : (
+          <h5>Shoping list is empty</h5>
+        )}
       </div>
       {isShowedCreate && (
         <HiddenForm
           formInfo={formInfo}
           showForm={showFormCreate}
           handleChange={handleChange}
-        />
-      )}
-      {isShowedEdit && (
-        <HiddenForm
-          formInfo={formEditInfo}
-          showForm={showFormEdit}
-          handleChange={handleChange}
+          whatChanged={setWhatChanged}
         />
       )}
     </div>
