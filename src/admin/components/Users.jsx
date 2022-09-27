@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import User from "./AdminUserCard";
 import "../../Custom.css";
 
 const Users = (props) => {
   const [formData, setFormData] = useState();
+  const [users, setUsers] = useState();
   const [showUserForm, setShowUserForm] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const setVisibility = () => {
     setShowUserForm((prevState) => !prevState);
@@ -20,6 +25,39 @@ const Users = (props) => {
       };
     });
   };
+
+  const deleteUser = (username) => {
+    axiosPrivate
+      .delete(`/admin/user/${username}`)
+      .then(() => {
+        props.showMsg(`User ${username} deleted succesfully.`);
+      })
+      .catch((err) => {
+        props.addError(`Error occurred while deleting ${username}.`);
+      });
+  };
+
+  useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+
+    const getUsers = async () => {
+      try {
+        const units = await axiosPrivate.get("admin/users");
+        isMounted && setUsers(units.data.data);
+      } catch (err) {
+        console.log(err);
+        navigate("/home", { state: { from: location }, replace: true });
+      }
+    };
+
+    getUsers();
+
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+  }, [axiosPrivate, location, navigate, props.showMsg]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,89 +84,83 @@ const Users = (props) => {
       });
   };
   return (
-    <div className="text-end">
-      {!showUserForm ? (
-        <button
-          className="btn btn-outline-success my-2"
-          onClick={setVisibility}
-        >
-          Add User
-        </button>
-      ) : (
-        <button className="btn btn-outline-danger my-2" onClick={setVisibility}>
-          Close
-        </button>
-      )}
+    <div className="w-100">
+      <div className="d-flex align-items-center justify-content-between">
+        <h3>Users</h3>
+        {!showUserForm ? (
+          <button
+            className="btn btn-outline-warning my-2"
+            onClick={setVisibility}
+          >
+            Configure
+          </button>
+        ) : (
+          <button
+            className="btn btn-outline-danger my-2"
+            onClick={setVisibility}
+          >
+            Close
+          </button>
+        )}
+      </div>
       <div className={showUserForm ? "formBox" : "formBox hidden"}>
         <form onSubmit={handleSubmit} className="row">
           <div className="col-6">
-            <div class="form-floating mb-3">
+            <div class=" mb-3">
               <input
                 type="text"
-                className="form-control"
-                id="floatingInput1"
-                placeholder="Joe"
+                className="form-control input"
+                placeholder="Name"
                 name="user"
                 onChange={handleChange}
               />
-              <label htmlFor="floatingInput1">Username</label>
             </div>
-            <div class="form-floating mb-3">
+            <div class=" mb-3">
               <input
                 type="email"
-                className="form-control"
-                id="floatingInput2"
-                placeholder="name@example.com"
+                className="form-control input"
+                placeholder="E-mail"
                 name="email"
                 onChange={handleChange}
               />
-              <label htmlFor="floatingInput2">Email address</label>
             </div>
-            <div class="form-floating mb-3">
+            <div class=" mb-3">
               <input
                 type="password"
-                className="form-control"
-                id="floatingInput3"
-                placeholder="Axy#321Al"
+                className="form-control input"
+                placeholder="Password"
                 name="pwd"
                 onChange={handleChange}
               />
-              <label htmlFor="floatingInput3">Password</label>
             </div>
           </div>
           <div className="col-6">
-            <div class="form-floating mb-3">
+            <div class=" mb-3">
               <input
                 type="number"
-                className="form-control"
-                id="floatingInput4"
-                placeholder="21"
+                className="form-control input"
+                placeholder="Age"
                 name="age"
                 onChange={handleChange}
               />
-              <label htmlFor="floatingInput4">Age</label>
             </div>
-            <div class="form-floating mb-3">
+            <div class=" mb-3">
               <input
                 type="text"
-                className="form-control"
-                id="floatingInput5"
-                placeholder="Company a.s."
+                className="form-control input"
+                placeholder="Working at"
                 name="work"
                 onChange={handleChange}
               />
-              <label htmlFor="floatingInput5">Work</label>
             </div>
-            <div class="form-floating mb-3">
+            <div class=" mb-3">
               <input
                 type="text"
-                className="form-control"
-                id="floatingInput6"
-                placeholder="Room 1"
+                className="form-control input"
+                placeholder="Living in a room"
                 name="room"
                 onChange={handleChange}
               />
-              <label htmlFor="floatingInput6">Room</label>
             </div>
           </div>
           <div className="form-check">
@@ -158,6 +190,13 @@ const Users = (props) => {
             )}
           </div>
         </form>
+        <div className="text-light my-4">
+          {users?.length > 0 ? (
+            users?.map((user) => <User info={user} handleDelete={deleteUser} />)
+          ) : (
+            <h6 className=" m-2 text-light">There are no users in DB..</h6>
+          )}
+        </div>
       </div>
     </div>
   );

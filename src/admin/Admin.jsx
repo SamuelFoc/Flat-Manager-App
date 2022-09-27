@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import Users from "./components/Users";
 import Energies from "./components/Energies";
+import Units from "./components/Units";
 
 import "./Admin.css";
 import { axiosPrivate } from "../api/axios";
+import Services from "./components/Services";
 // AXIOS SET
 
 const Admin = () => {
@@ -18,10 +20,9 @@ const Admin = () => {
   }, [newMsg]);
 
   return (
-    <section className="adminPage container-fluid container-md">
+    <section className="adminPage container-fluid">
       <div className="adminMsgBox">
         <h4 className="text-light">
-          Messages:{" "}
           {newMsg || newError ? (
             ""
           ) : (
@@ -46,20 +47,15 @@ const Admin = () => {
         </div>
       </div>
       <div className="adminBox">
-        <h3>Users</h3>
         <Users showMsg={setNewMsg} addError={setNewError} />
       </div>
       <div className="adminBox">
-        <h3>Products</h3>
+        <Services showMsg={setNewMsg} addError={setNewError} />
       </div>
       <div className="adminBox">
-        <h3>Responsibilities</h3>
+        <Units showMsg={setNewMsg} addError={setNewError} />
       </div>
       <div className="adminBox">
-        <h3>Events</h3>
-      </div>
-      <div className="adminBox">
-        <h3>Energies</h3>
         <Energies
           energies={energy}
           showMsg={setNewMsg}
