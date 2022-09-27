@@ -5,10 +5,12 @@ import { faDroplet } from "@fortawesome/free-solid-svg-icons";
 import { faFireFlameCurved } from "@fortawesome/free-solid-svg-icons";
 import { faPlug } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import "./Energies.css";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import EnergyCard from "../components/EnergyCard";
 import HiddenForm from "../components/HiddenForm";
+import Statistics from "../components/Statistics";
 
 export default function Energies() {
   // TODO: STATES
@@ -71,8 +73,6 @@ export default function Energies() {
     submitName: "CREATE RECORD",
   };
 
-  console.log(energyData);
-
   return (
     <div className="">
       <h3 className="color-light ms-3">
@@ -83,7 +83,7 @@ export default function Energies() {
           onClick={showFormCreate}
         />
       </h3>
-      <div className="energyBox text-light">
+      <div className="energyBox flex-column text-light">
         <div className="row d-flex justify-content-center w-100">
           <div className="col-12 col-md-8 col-xl-6 col-xxl-4 p-2">
             <h3 className="ms-2 mb-4">
@@ -91,8 +91,10 @@ export default function Energies() {
               <FontAwesomeIcon icon={faDroplet} className="low-priority" />
             </h3>
             <div className="row m-2">
-              {energyData.water?.length > 0 ? (
-                <h1>s</h1>
+              {energyData?.water?.length > 0 ? (
+                energyData?.water?.map((record) => (
+                  <EnergyCard type="water" info={record} />
+                ))
               ) : (
                 <h6>There are no records..</h6>
               )}
@@ -107,8 +109,10 @@ export default function Energies() {
               />
             </h3>
             <div className="row m-2">
-              {energyData.gas?.length > 0 ? (
-                <h6>1</h6>
+              {energyData?.gas?.length > 0 ? (
+                energyData?.gas?.map((record) => (
+                  <EnergyCard type="gas" info={record} />
+                ))
               ) : (
                 <h6>There are no records..</h6>
               )}
@@ -120,13 +124,24 @@ export default function Energies() {
               <FontAwesomeIcon icon={faPlug} className="critical-priority" />
             </h3>
             <div className="row m-2">
-              {energyData.electricity?.length > 0 ? (
-                <h6>1</h6>
+              {energyData?.electricity?.length > 0 ? (
+                energyData?.electricity?.map((record) => (
+                  <EnergyCard info={record} type="electricity" />
+                ))
               ) : (
                 <h6>There are no records..</h6>
               )}
             </div>
           </div>
+        </div>
+        <div className="row w-100 mt-4">
+          <h3 className="mb-4">
+            Consumption Statistics{" "}
+            <FontAwesomeIcon icon={faChartLine} className="critical-priority" />
+            <div className="chartHolder d-flex justify-content-center py-4">
+              <Statistics data={energyData} />
+            </div>
+          </h3>
         </div>
       </div>
 
