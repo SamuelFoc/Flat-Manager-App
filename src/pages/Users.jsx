@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useNavigate, useLocation } from "react-router-dom";
 import UserCard from "../components/UserCard";
+import "../Custom.css";
 
 export default function Home() {
   const [users, setUsers] = useState();
@@ -33,7 +34,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="row ps-2">
+      <div className="ps-2">
         <h3 className="m-2 custom-pill-box">All accommodated</h3>
       </div>
       <div className="usersBox mt-3 py-5">

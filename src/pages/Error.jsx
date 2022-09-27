@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 export default function Error() {
   return (
-    <div>
+    <div className="container px-5">
       <h1 className="color-light">
         Error 420!
-        <p>
+        <p className="fs-5">
           Something went wrong.. Please try it again or contact your webmaster.
         </p>
       </h1>

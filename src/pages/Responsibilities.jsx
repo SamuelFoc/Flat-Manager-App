@@ -109,16 +109,16 @@ export default function Responsibilities() {
           onClick={showFormCreate}
         />
       </h3>
-      <div className="respBox text-light">
+      <div className="respBox text-light mt-4 pe-5">
         <div className="row d-flex justify-content-center w-100">
           <div className="col-12 col-md-8 col-xl-6 col-xxl-4 p-2">
-            <h3 className="ms-2 mb-4">
+            <h6 className="ms-2 mb-4">
               Critical priority{" "}
               <FontAwesomeIcon
                 icon={faTemperatureArrowUp}
                 className="critical-priority"
               />
-            </h3>
+            </h6>
             <div className="row m-2">
               {critical?.length ? (
                 critical.map((resp) => (
@@ -130,18 +130,20 @@ export default function Responsibilities() {
                   />
                 ))
               ) : (
-                <h6>No critical responsibilities</h6>
+                <div className="noData">
+                  <span>No critical responsibilities</span>
+                </div>
               )}
             </div>
           </div>
           <div className="col-12 col-md-8 col-xl-6 col-xxl-4 p-2 ">
-            <h3 className="ms-2 mb-4">
+            <h6 className="ms-2 mb-4">
               High priority{" "}
               <FontAwesomeIcon
                 icon={faTemperatureThreeQuarters}
                 className="high-priority"
               />
-            </h3>
+            </h6>
             <div className="row m-2">
               {high?.length ? (
                 high.map((resp) => (
@@ -153,18 +155,20 @@ export default function Responsibilities() {
                   />
                 ))
               ) : (
-                <h6>No high priority responsibilities</h6>
+                <div className="noData">
+                  <span>No high priority responsibilities</span>
+                </div>
               )}
             </div>
           </div>
           <div className="col-12 col-md-8 col-xl-6 col-xxl-4 p-2 ">
-            <h3 className="ms-2 mb-4">
+            <h6 className="ms-2 mb-4">
               Low priority{" "}
               <FontAwesomeIcon
                 icon={faTemperatureQuarter}
                 className="low-priority"
               />
-            </h3>
+            </h6>
             <div className="row m-2">
               {low?.length ? (
                 low.map((resp) => (
@@ -176,7 +180,9 @@ export default function Responsibilities() {
                   />
                 ))
               ) : (
-                <h6>No low priority responsibilities</h6>
+                <div className="noData">
+                  <span>No low priority responsibilities</span>
+                </div>
               )}
             </div>
           </div>

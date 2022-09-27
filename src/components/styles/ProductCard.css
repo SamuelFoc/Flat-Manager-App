@@ -1,7 +1,7 @@
 .productCard {
   background-color: var(--dark-color);
   border-radius: 5px;
-  min-width: 300px;
+  min-width: 200px;
 }
 .productCardOwner {
   font-size: 0.85rem;

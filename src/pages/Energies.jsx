@@ -74,7 +74,7 @@ export default function Energies() {
   };
 
   return (
-    <div className="">
+    <div className="mt-5">
       <h3 className="color-light ms-3">
         Energy Records{" "}
         <FontAwesomeIcon
@@ -83,65 +83,71 @@ export default function Energies() {
           onClick={showFormCreate}
         />
       </h3>
-      <div className="energyBox flex-column text-light">
-        <div className="row d-flex justify-content-center w-100">
-          <div className="col-12 col-md-8 col-xl-6 col-xxl-4 p-2">
-            <h3 className="ms-2 mb-4">
+      <div className="energyBox flex-column text-light mt-4 pe-5">
+        <div className="row d-flex w-100">
+          <div className="col-12 col-xl-6 col-xxl-4 p-2 px-md-5">
+            <h6 className="ms-2 mb-4">
               Water consumption{" "}
               <FontAwesomeIcon icon={faDroplet} className="low-priority" />
-            </h3>
+            </h6>
             <div className="row m-2">
               {energyData?.water?.length > 0 ? (
                 energyData?.water?.map((record) => (
                   <EnergyCard type="water" info={record} />
                 ))
               ) : (
-                <h6>There are no records..</h6>
+                <div className="noData">
+                  <span>There are no records..</span>
+                </div>
               )}
             </div>
           </div>
-          <div className="col-12 col-md-8 col-xl-6 col-xxl-4 p-2 ">
-            <h3 className="ms-2 mb-4">
+          <div className="col-12 col-xl-6 col-xxl-4 p-2 px-md-5">
+            <h6 className="ms-2 mb-4">
               Gas consumption{" "}
               <FontAwesomeIcon
                 icon={faFireFlameCurved}
                 className="high-priority"
               />
-            </h3>
+            </h6>
             <div className="row m-2">
               {energyData?.gas?.length > 0 ? (
                 energyData?.gas?.map((record) => (
                   <EnergyCard type="gas" info={record} />
                 ))
               ) : (
-                <h6>There are no records..</h6>
+                <div className="noData">
+                  <span>There are no records..</span>
+                </div>
               )}
             </div>
           </div>
-          <div className="col-12 col-md-8 col-xl-6 col-xxl-4 p-2 ">
-            <h3 className="ms-2 mb-4">
+          <div className="col-12 col-xl-6 col-xxl-4 p-2 px-md-5">
+            <h6 className="ms-2 mb-4">
               Electricity consumption{" "}
-              <FontAwesomeIcon icon={faPlug} className="critical-priority" />
-            </h3>
+              <FontAwesomeIcon icon={faPlug} className="el-priority" />
+            </h6>
             <div className="row m-2">
               {energyData?.electricity?.length > 0 ? (
                 energyData?.electricity?.map((record) => (
                   <EnergyCard info={record} type="electricity" />
                 ))
               ) : (
-                <h6>There are no records..</h6>
+                <div className="noData">
+                  <span>There are no records..</span>
+                </div>
               )}
             </div>
           </div>
         </div>
-        <div className="row w-100 mt-4">
-          <h3 className="mb-4">
+        <div className="row mx-md-5">
+          <h6 className="mb-2">
             Consumption Statistics{" "}
             <FontAwesomeIcon icon={faChartLine} className="critical-priority" />
-            <div className="chartHolder d-flex justify-content-center py-4">
-              <Statistics data={energyData} />
-            </div>
-          </h3>
+          </h6>
+          <div className="border rounded chartHolder d-flex justify-content-center py-4">
+            <Statistics data={energyData} />
+          </div>
         </div>
       </div>
 

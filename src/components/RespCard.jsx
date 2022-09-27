@@ -27,7 +27,17 @@ function RespCard(props) {
     <div className="respCard m-1">
       <div className="row">
         <div className={"col-6 respTitle" + checkClass(props.info.urgent)}>
-          <h6 className="my-2">{props.info.title}</h6>
+          <h6 className="my-2">
+            {props.info.title}
+            <FontAwesomeIcon
+              icon={props.info.done ? faCheck : faXmark}
+              className={
+                props.info.done
+                  ? "ms-2 respDoneIcon-check"
+                  : "ms-2 respDoneIcon-cross"
+              }
+            />
+          </h6>
         </div>
         <div className="col-6 d-flex justify-content-end">
           {props.info.done ? (
@@ -58,16 +68,12 @@ function RespCard(props) {
         <div className="col-8 respDescription text-start">
           {props.info.description}
         </div>
-        <div className={"col-2 respDate" + checkClass(props.info.urgent)}>
-          {new Date(props.info.deadline).toLocaleDateString()}
-        </div>
-        <div className="col-2 text-center">
-          <FontAwesomeIcon
-            icon={props.info.done ? faCheck : faXmark}
-            className={
-              props.info.done ? "respDoneIcon-check" : "respDoneIcon-cross"
-            }
-          />
+        <div
+          className={
+            "col-4 text-end pe-3 pt-1 respDate" + checkClass(props.info.urgent)
+          }
+        >
+          Deadline: {new Date(props.info.deadline).toLocaleDateString("cs-CZ")}
         </div>
       </div>
     </div>

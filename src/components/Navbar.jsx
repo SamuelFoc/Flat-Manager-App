@@ -56,7 +56,7 @@ function Navbar() {
         </ul>
       </nav>
       <aside>
-        <ul className="text-light align-items-center m-2">
+        <ul className="text-light align-items-center m-2 pt-3">
           <NavLink to="/admin">
             <FontAwesomeIcon icon={faLock} className="nav-item mx-3" />
           </NavLink>

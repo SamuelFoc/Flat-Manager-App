@@ -40,7 +40,7 @@ function ProductCard(props) {
         <p className="productCardOwner">
           {props.info.ownership === "every"
             ? "Everybody"
-            : props.info.userEmail}
+            : props.info.ownership}
         </p>
       </div>
       <div>

@@ -19,3 +19,37 @@
   max-width: 400px;
   padding: 0.3rem 1rem;
 }
+
+.noData {
+  background-color: rgba(0, 0, 0, 0.308);
+  padding: 10px 20px;
+  margin: 0;
+  border-radius: 8px;
+  border: 2px solid rgba(0, 0, 0, 0.151);
+  font-size: 14px;
+}
+
+.large-text {
+  font-size: 16px;
+}
+
+.medium-text {
+  font-size: 13px;
+}
+
+.small-text {
+  font-size: 11px;
+}
+
+.critical-priority {
+  color: rgb(247, 73, 73);
+}
+.high-priority {
+  color: orange;
+}
+.low-priority {
+  color: rgb(0, 162, 255);
+}
+.el-priority {
+  color: rgb(0, 255, 98);
+}

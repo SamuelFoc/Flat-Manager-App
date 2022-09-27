@@ -1,15 +1,16 @@
 import React from "react";
 import Service from "../components/ServiceCard";
 import "../Custom.css";
+
 const Services = () => {
   return (
-    <div className="text-light serviceContainer container mt-5">
+    <div className="text-light serviceContainer container-fluid mt-5">
       <div className="row">
-        <div className="col-12 col-md-6">
-          <div className="row">
+        <div className="col-12 pe-5 pe-md-0 col-xxl-6">
+          <div>
             <h3 className="m-2 custom-pill-box">Monthly payable services</h3>
           </div>
-          <div className="row serviceColumn">
+          <div className="serviceColumn">
             <Service
               info={{ name: "Internet access", price: 600, payday: 14 }}
             />
@@ -19,12 +20,11 @@ const Services = () => {
             <Service info={{ name: "Trash", price: 400, payday: 25 }} />
           </div>
         </div>
-
-        <div className="col-12 col-md-6">
-          <div className="row">
+        <div className="col-12 pe-5 pe-md-0 col-xxl-6">
+          <div>
             <h3 className="m-2 custom-pill-box">Unit prices</h3>
           </div>
-          <div className="row serviceColumn">
+          <div className="serviceColumn">
             <Service
               info={{ name: "Electricity", price: 10.35, unit: "kWh" }}
             />

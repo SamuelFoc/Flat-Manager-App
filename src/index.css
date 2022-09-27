@@ -122,16 +122,6 @@ body {
   color: #cecbc8;
 }
 
-.critical-priority {
-  color: rgb(247, 73, 73);
-}
-.high-priority {
-  color: orange;
-}
-.low-priority {
-  color: rgb(0, 162, 255);
-}
-
 /* width */
 ::-webkit-scrollbar {
   height: 6px;
