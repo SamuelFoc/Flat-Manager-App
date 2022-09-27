@@ -14,7 +14,7 @@ const Logout = () => {
     axiosPrivate.get("/logout").then(() => {
       setAuth({});
     });
-  }, [axiosPrivate]);
+  }, [axiosPrivate, setAuth]);
 
   return (
     <div className="text-light logoutPage">
