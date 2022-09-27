@@ -24,19 +24,25 @@ const Energy = (props) => {
   };
 
   return (
-    <div className="text-end w-100">
-      {!showUserForm ? (
-        <button
-          className="btn btn-outline-success my-2"
-          onClick={setVisibility}
-        >
-          Open
-        </button>
-      ) : (
-        <button className="btn btn-outline-danger my-2" onClick={setVisibility}>
-          Close
-        </button>
-      )}
+    <div className="w-100">
+      <div className="d-flex align-items-center justify-content-between">
+        <h3>Energies</h3>
+        {!showUserForm ? (
+          <button
+            className="btn btn-outline-warning my-2"
+            onClick={setVisibility}
+          >
+            Configure
+          </button>
+        ) : (
+          <button
+            className="btn btn-outline-danger my-2"
+            onClick={setVisibility}
+          >
+            Close
+          </button>
+        )}
+      </div>
       <div className={showUserForm ? "formBox" : "formBox hidden"}>
         <div className="text-light my-4">
           {energy?.water?.length > 0 ? (
