@@ -1,0 +1,40 @@
+.adminPage {
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.formBox {
+  background-color: rgba(0, 0, 0, 0.274);
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+h3 {
+  color: white;
+}
+.adminMsgBox {
+  margin: 1rem;
+  min-width: 50vw;
+}
+.adminBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem;
+  border: 2px solid rgba(187, 99, 175, 0.418);
+  background-color: rgba(0, 0, 0, 0.192);
+  backdrop-filter: blur(5px);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.hidden {
+  position: absolute;
+  visibility: collapse;
+}
