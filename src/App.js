@@ -9,6 +9,8 @@ import ShoppingList from "./pages/ShoppingList";
 import Responsibilities from "./pages/Responsibilities";
 import Energies from "./pages/Energies";
 import { Routes, Route } from "react-router-dom";
+import Admin from "./admin/Admin";
+import Logout from "./pages/Logout";
 
 const ROLES = {
   User: "User",
@@ -21,8 +23,12 @@ function App() {
     <div>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
         <Route path="/" element={<Layout />}>
           <Route path="/unauthorized" element={<Unauthorized />} />
+          <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+            <Route path="/admin" element={<Admin />} />
+          </Route>
           <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
             <Route path="/home" element={<UserHome />} />
             <Route path="/users" element={<Users />} />
