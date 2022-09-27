@@ -1,17 +1,13 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import Unit from "./AdminServiceCard";
 import "../../Custom.css";
 
 const Services = (props) => {
   const [formData, setFormData] = useState();
-  const [unitsData, setUnitsData] = useState();
   const [showUserForm, setShowUserForm] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const axiosPrivate = useAxiosPrivate();
-  const location = useLocation();
-  const navigate = useNavigate();
 
   const setVisibility = () => {
     setShowUserForm((prevState) => !prevState);
@@ -36,28 +32,6 @@ const Services = (props) => {
         props.addError(`Error occurred while deleting ID: ${id}.`);
       });
   };
-
-  useEffect(() => {
-    let isMounted = true;
-    const controller = new AbortController();
-
-    const getUnits = async () => {
-      try {
-        const units = await axiosPrivate.get("admin/units");
-        isMounted && setUnitsData(units.data.data);
-      } catch (err) {
-        console.log(err);
-        navigate("/home", { state: { from: location }, replace: true });
-      }
-    };
-
-    getUnits();
-
-    return () => {
-      isMounted = false;
-      controller.abort();
-    };
-  }, [axiosPrivate, location, navigate, props.showMsg]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -149,8 +123,8 @@ const Services = (props) => {
           </div>
         </form>
         <div className="text-light my-2">
-          {unitsData?.length > 0 ? (
-            unitsData?.map((service) => (
+          {props?.units?.length > 0 ? (
+            props?.units?.map((service) => (
               <Unit info={service} handleDelete={deleteRecord} />
             ))
           ) : (

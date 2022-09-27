@@ -1,17 +1,13 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import User from "./AdminUserCard";
 import "../../Custom.css";
 
 const Users = (props) => {
   const [formData, setFormData] = useState();
-  const [users, setUsers] = useState();
   const [showUserForm, setShowUserForm] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const axiosPrivate = useAxiosPrivate();
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const setVisibility = () => {
     setShowUserForm((prevState) => !prevState);
@@ -36,28 +32,6 @@ const Users = (props) => {
         props.addError(`Error occurred while deleting ${username}.`);
       });
   };
-
-  useEffect(() => {
-    let isMounted = true;
-    const controller = new AbortController();
-
-    const getUsers = async () => {
-      try {
-        const units = await axiosPrivate.get("admin/users");
-        isMounted && setUsers(units.data.data);
-      } catch (err) {
-        console.log(err);
-        navigate("/home", { state: { from: location }, replace: true });
-      }
-    };
-
-    getUsers();
-
-    return () => {
-      isMounted = false;
-      controller.abort();
-    };
-  }, [axiosPrivate, location, navigate, props.showMsg]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -191,8 +165,10 @@ const Users = (props) => {
           </div>
         </form>
         <div className="text-light my-4">
-          {users?.length > 0 ? (
-            users?.map((user) => <User info={user} handleDelete={deleteUser} />)
+          {props?.users?.length > 0 ? (
+            props?.users?.map((user) => (
+              <User info={user} handleDelete={deleteUser} />
+            ))
           ) : (
             <h6 className=" m-2 text-light">There are no users in DB..</h6>
           )}

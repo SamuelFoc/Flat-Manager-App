@@ -12,10 +12,22 @@ const Admin = () => {
   const [newError, setNewError] = useState("");
   const [newMsg, setNewMsg] = useState("");
   const [energy, setEnergy] = useState("");
+  const [service, setService] = useState("");
+  const [unit, setUnit] = useState("");
+  const [user, setUser] = useState("");
 
   useEffect(() => {
     axiosPrivate.get("/admin/energies").then((energies) => {
       setEnergy(energies.data.data);
+    });
+    axiosPrivate.get("/admin/services").then((services) => {
+      setService(services.data.data);
+    });
+    axiosPrivate.get("/admin/users").then((users) => {
+      setUser(users.data.data);
+    });
+    axiosPrivate.get("/admin/units").then((units) => {
+      setUnit(units.data.data);
     });
   }, [newMsg]);
 
@@ -47,13 +59,17 @@ const Admin = () => {
         </div>
       </div>
       <div className="adminBox">
-        <Users showMsg={setNewMsg} addError={setNewError} />
+        <Users users={user} showMsg={setNewMsg} addError={setNewError} />
       </div>
       <div className="adminBox">
-        <Services showMsg={setNewMsg} addError={setNewError} />
+        <Services
+          services={service}
+          showMsg={setNewMsg}
+          addError={setNewError}
+        />
       </div>
       <div className="adminBox">
-        <Units showMsg={setNewMsg} addError={setNewError} />
+        <Units units={unit} showMsg={setNewMsg} addError={setNewError} />
       </div>
       <div className="adminBox">
         <Energies
