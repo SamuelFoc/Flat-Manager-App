@@ -1,4 +1,4 @@
-import "./HiddenForm.css";
+import "./styles/HiddenForm.css";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 function HiddenForm(props) {

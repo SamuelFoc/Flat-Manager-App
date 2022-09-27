@@ -1,0 +1,21 @@
+.btn-w {
+  max-width: 200px;
+}
+
+.text-white-light {
+  color: rgba(216, 216, 216, 0.788);
+}
+
+.custom-pill-box {
+  background: linear-gradient(
+    36deg,
+    rgba(194, 81, 0, 1) 0%,
+    rgb(240, 158, 34) 100%
+  );
+  font-size: large;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  border-radius: 25px;
+  max-width: 400px;
+  padding: 0.3rem 1rem;
+}

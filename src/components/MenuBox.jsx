@@ -1,5 +1,5 @@
 import React from "react";
-import "./MenuBox.css";
+import "./styles/MenuBox.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";

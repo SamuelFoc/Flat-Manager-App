@@ -11,6 +11,7 @@ import Energies from "./pages/Energies";
 import { Routes, Route } from "react-router-dom";
 import Admin from "./admin/Admin";
 import Logout from "./pages/Logout";
+import Services from "./pages/Services";
 
 const ROLES = {
   User: "User",
@@ -35,6 +36,7 @@ function App() {
             <Route path="/shoppingList" element={<ShoppingList />} />
             <Route path="/responsibilities" element={<Responsibilities />} />
             <Route path="/energies" element={<Energies />} />
+            <Route path="/services" element={<Services />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Route>

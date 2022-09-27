@@ -1,5 +1,5 @@
 import React from "react";
-import "./EnergyCard.css";
+import "./styles/EnergyCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRuler } from "@fortawesome/free-solid-svg-icons";
 import { faCalendarPlus } from "@fortawesome/free-solid-svg-icons";

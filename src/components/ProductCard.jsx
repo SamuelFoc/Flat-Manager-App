@@ -1,5 +1,5 @@
 import React from "react";
-import "./ProductCard.css";
+import "./styles/ProductCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTag } from "@fortawesome/free-solid-svg-icons";
 import { faTruckFast } from "@fortawesome/free-solid-svg-icons";

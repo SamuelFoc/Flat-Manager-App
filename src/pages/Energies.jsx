@@ -6,7 +6,7 @@ import { faFireFlameCurved } from "@fortawesome/free-solid-svg-icons";
 import { faPlug } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faChartLine } from "@fortawesome/free-solid-svg-icons";
-import "./Energies.css";
+import "../styles/Energies.css";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import EnergyCard from "../components/EnergyCard";
 import HiddenForm from "../components/HiddenForm";

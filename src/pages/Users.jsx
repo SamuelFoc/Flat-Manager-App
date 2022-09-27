@@ -33,7 +33,9 @@ export default function Home() {
 
   return (
     <div>
-      <h3 className="color-light ms-3">My roommates</h3>
+      <div className="row ps-2">
+        <h3 className="m-2 custom-pill-box">All accommodated</h3>
+      </div>
       <div className="usersBox mt-3 py-5">
         {users?.length ? (
           users.map((user, i) => <UserCard key={i} info={user} />)

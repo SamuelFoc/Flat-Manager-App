@@ -1,0 +1,23 @@
+.serviceContainer {
+  min-width: 100vw;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.serviceColumn {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.serviceCardBox {
+  padding: 1.5rem 2rem;
+  margin: 1rem 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.068);
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.096);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.24);
+  font-size: 16px;
+  max-width: 230px;
+  min-height: 100px;
+}

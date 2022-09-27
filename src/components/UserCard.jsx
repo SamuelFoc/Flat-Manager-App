@@ -1,5 +1,5 @@
 import React from "react";
-import "./UserCard.css";
+import "./styles/UserCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faMobile } from "@fortawesome/free-solid-svg-icons";

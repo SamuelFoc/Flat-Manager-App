@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import "./Custom.css";
+import "../../Custom.css";
 
 const Users = (props) => {
   const [formData, setFormData] = useState();

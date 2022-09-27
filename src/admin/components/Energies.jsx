@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import EnergyCard from "./AdminEnergyCard";
-import "./Custom.css";
+import "../../Custom.css";
 
 const Energy = (props) => {
   const [showUserForm, setShowUserForm] = useState(false);

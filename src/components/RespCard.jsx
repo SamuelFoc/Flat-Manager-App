@@ -1,5 +1,5 @@
 import React from "react";
-import "./RespCard.css";
+import "./styles/RespCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faRepeat } from "@fortawesome/free-solid-svg-icons";
