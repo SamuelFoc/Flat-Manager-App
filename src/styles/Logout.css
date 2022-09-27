@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
+.logoutPage {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Orbitron", sans-serif;
+  font-size: 35px;
+}
+
+.logout-title {
+  transform: translateY(-25px);
+}
+.logout-icon {
+  transform: rotate(90deg);
+}
+.logout-button {
+  transform: translate(10px, 20px);
+}
+
+@media only screen and (max-width: 668px) {
+  .logoutPage {
+    display: block;
+  }
+
+  .logout-title {
+  }
+  .logout-icon {
+    visibility: hidden;
+  }
+  .logout-button {
+    transform: translateY(-50px);
+  }
+}
