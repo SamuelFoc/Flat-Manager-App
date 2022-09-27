@@ -13,19 +13,30 @@ const ServiceCard = (props) => {
           <span className="my-2">
             <FontAwesomeIcon icon={faCalendarCheck} />
             &emsp;
-            {new Date(props.info.createdAt).toLocaleDateString("en-GB")}
+            {new Date(props?.info?.createdAt).toLocaleDateString("en-GB")}
           </span>
         </div>
-        <div className="col-2 d-flex align-items-center">{props.info.name}</div>
+        <div className="col-2 d-flex align-items-center">
+          {props?.info?.name}
+        </div>
         <div className="col-6 align-items-center d-flex justify-content-end">
           <FontAwesomeIcon icon={faMoneyBill} />
           <span className="d-flex align-items-center">
-            &emsp;{props.info.unit_price}&ensp;{`CZK/${props.info.unit}`}
+            &emsp;
+            {props?.info?.unit_price
+              ? props?.info?.unit_price
+              : props?.info?.monthly_price}
+            &ensp;
+            {`CZK${
+              props?.info?.unit
+                ? `/${props?.info?.unit}`
+                : ` payed at ${props?.info?.pay_day}th`
+            }`}
           </span>
           <button
             type="button"
             className="btn btn-outline-danger ms-4"
-            onClick={() => props.handleDelete(props.info.id)}
+            onClick={() => props.handleDelete(props?.info?.id)}
           >
             <FontAwesomeIcon icon={faTrashAlt} />
           </button>

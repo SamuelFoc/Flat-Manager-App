@@ -1,15 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import ServiceCard from "./AdminServiceCard";
 import "../../Custom.css";
 
 const Services = (props) => {
   const [formData, setFormData] = useState();
+  const [services, setServices] = useState();
   const [showUserForm, setShowUserForm] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const setVisibility = () => {
     setShowUserForm((prevState) => !prevState);
+  };
+
+  const deleteRecord = (id) => {
+    axiosPrivate
+      .delete(`/admin/service/${id}`)
+      .then(() => {
+        props.showMsg(`Record ID: ${id} deleted succesfully.`);
+      })
+      .catch((err) => {
+        props.addError(`Error occurred while deleting ID: ${id}.`);
+      });
   };
 
   const handleChange = (event) => {
@@ -20,6 +36,28 @@ const Services = (props) => {
       };
     });
   };
+
+  useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+
+    const getServices = async () => {
+      try {
+        const units = await axiosPrivate.get("admin/services");
+        isMounted && setServices(units.data.data);
+      } catch (err) {
+        console.log(err);
+        navigate("/home", { state: { from: location }, replace: true });
+      }
+    };
+
+    getServices();
+
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+  }, [axiosPrivate, location, navigate, props.showMsg]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,10 +89,10 @@ const Services = (props) => {
         <h3>Services</h3>
         {!showUserForm ? (
           <button
-            className="btn btn-outline-success my-2"
+            className="btn btn-outline-warning my-2"
             onClick={setVisibility}
           >
-            Add Service
+            Configure
           </button>
         ) : (
           <button
@@ -111,6 +149,15 @@ const Services = (props) => {
             )}
           </div>
         </form>
+        <div className="text-light my-2">
+          {services?.length > 0 ? (
+            services?.map((service) => (
+              <ServiceCard info={service} handleDelete={deleteRecord} />
+            ))
+          ) : (
+            <h6 className=" m-2 text-light">There are no services in DB..</h6>
+          )}
+        </div>
       </div>
     </div>
   );
