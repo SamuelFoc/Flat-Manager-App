@@ -17,18 +17,22 @@ const Admin = () => {
   const [user, setUser] = useState("");
 
   useEffect(() => {
-    axiosPrivate.get("/admin/energies").then((energies) => {
-      setEnergy(energies.data.data);
-    });
-    axiosPrivate.get("/admin/services").then((services) => {
-      setService(services.data.data);
-    });
-    axiosPrivate.get("/admin/users").then((users) => {
-      setUser(users.data.data);
-    });
-    axiosPrivate.get("/admin/units").then((units) => {
-      setUnit(units.data.data);
-    });
+    const getData = async () => {
+      await axiosPrivate.get("/admin/energies").then((energies) => {
+        setEnergy(energies.data.data);
+      });
+      await axiosPrivate.get("/admin/services").then((services) => {
+        setService(services.data.data);
+      });
+      await axiosPrivate.get("/admin/users").then((users) => {
+        setUser(users.data.data);
+      });
+      await axiosPrivate.get("/admin/units").then((units) => {
+        setUnit(units.data.data);
+      });
+    };
+
+    getData();
   }, [newMsg]);
 
   return (
