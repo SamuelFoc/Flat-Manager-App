@@ -8,6 +8,8 @@ import { faBriefcase } from "@fortawesome/free-solid-svg-icons";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { faFireFlameSimple } from "@fortawesome/free-solid-svg-icons";
 import { faBellConcierge } from "@fortawesome/free-solid-svg-icons";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
   return (
@@ -21,6 +23,9 @@ function Navbar() {
         </div>
 
         <ul className="text-light d-flex align-items-center m-2">
+          <NavLink to="/admin">
+            <FontAwesomeIcon icon={faLock} className="nav-item mx-3" />
+          </NavLink>
           <NavLink to="/users">
             <FontAwesomeIcon icon={faUsers} className="nav-item mx-3" />
           </NavLink>
@@ -45,10 +50,16 @@ function Navbar() {
               className="nav-item  mx-3 ring"
             />
           </NavLink>
+          <NavLink to="/logout">
+            <FontAwesomeIcon icon={faSignOut} className="nav-item my-3" />
+          </NavLink>
         </ul>
       </nav>
       <aside>
         <ul className="text-light align-items-center m-2">
+          <NavLink to="/admin">
+            <FontAwesomeIcon icon={faLock} className="nav-item mx-3" />
+          </NavLink>
           <NavLink to="/users">
             <FontAwesomeIcon icon={faUsers} className="nav-item my-3" />
           </NavLink>
@@ -72,6 +83,9 @@ function Navbar() {
               icon={faBellConcierge}
               className="nav-item  mx-3 ring"
             />
+          </NavLink>
+          <NavLink to="/logout">
+            <FontAwesomeIcon icon={faSignOut} className="nav-item my-3" />
           </NavLink>
         </ul>
       </aside>
