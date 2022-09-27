@@ -9,13 +9,16 @@ const ServiceCard = (props) => {
     <div className="serviceCardBox">
       <h5>{props?.info?.name}</h5>
       <div className="d-flex align-items-center">
-        <FontAwesomeIcon icon={faMoneyBill} /> &emsp; {props.info.price} CZK{" "}
-        {props?.info?.unit ? `/${props.info.unit}` : ""}
+        <FontAwesomeIcon icon={faMoneyBill} /> &emsp;{" "}
+        {props?.info?.monthly_price
+          ? props?.info?.monthly_price
+          : props?.info?.unit_price}{" "}
+        CZK {props?.info?.unit ? `/${props.info.unit}` : ""}
       </div>
-      {props?.info?.payday ? (
+      {props?.info?.pay_day ? (
         <div className="d-flex align-items-center">
           <FontAwesomeIcon icon={faCalendarCheck} /> &emsp; Pay by{" "}
-          {props?.info?.payday}
+          {props?.info?.pay_day}
           <sup>th</sup>
         </div>
       ) : (
