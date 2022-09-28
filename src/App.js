@@ -30,7 +30,9 @@ function App() {
           <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
             <Route path="/admin" element={<Admin />} />
           </Route>
-          <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
+          <Route
+            element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}
+          >
             <Route path="/home" element={<UserHome />} />
             <Route path="/users" element={<Users />} />
             <Route path="/shoppingList" element={<ShoppingList />} />
