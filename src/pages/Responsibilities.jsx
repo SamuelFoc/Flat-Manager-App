@@ -93,7 +93,7 @@ export default function Responsibilities() {
       method: Id ? "put" : "post",
       data: newResp,
     },
-    inputs: ["title", "description"],
+    inputs: [{ name: "title" }, { name: "description" }],
     dates: ["deadline"],
     selections: [{ name: "priority", options: ["LOW", "HIGH", "CRITICAL"] }],
     submitName: "CREATE",

@@ -29,21 +29,24 @@ function HiddenForm(props) {
     <div className="afterElementForm">
       <form>
         {/* INPUTS */}
-        {props.formInfo.inputs.map((input, i) => {
+        {props.formInfo?.inputs?.map((input, i) => {
           return (
             <input
               key={i}
               className="form-control my-2"
               onChange={props.handleChange}
-              type="text"
-              name={input}
-              placeholder={input[0].toUpperCase() + input.slice(1)}
+              type={input?.type ? input.type : "text"}
+              min={input?.min}
+              max={input?.max}
+              step={input?.step}
+              name={input.name}
+              placeholder={input.name[0].toUpperCase() + input.name.slice(1)}
             />
           );
         })}
 
         {/* DATES */}
-        {props.formInfo.dates.map((input, i) => {
+        {props.formInfo?.dates?.map((input, i) => {
           return (
             <div key={i} className="text-light">
               <label htmlFor={input}>
@@ -61,7 +64,7 @@ function HiddenForm(props) {
         })}
 
         {/* SELECTIONS */}
-        {props.formInfo.selections.map((selection, i) => {
+        {props.formInfo?.selections?.map((selection, i) => {
           return (
             <select
               key={i}

@@ -47,7 +47,7 @@ const Users = (props) => {
 
     axiosPrivate(config)
       .then((res) => {
-        props.showMsg("User registration successfull.");
+        props.showMsg(`User ${formData?.user} registrated successfully.`);
         props.addError("");
         setIsLoading(false);
       })
@@ -129,10 +129,10 @@ const Users = (props) => {
             </div>
             <div class=" mb-3">
               <input
-                type="text"
+                type="tel"
                 className="form-control input"
-                placeholder="Living in a room"
-                name="room"
+                placeholder="Contact"
+                name="contact"
                 onChange={handleChange}
               />
             </div>

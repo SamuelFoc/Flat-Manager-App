@@ -82,7 +82,11 @@ export default function ShoppingList() {
       method: Id ? "put" : "post",
       data: newProduct,
     },
-    inputs: ["name", "owner", "price"],
+    inputs: [
+      { name: "name" },
+      { name: "owner" },
+      { name: "price", type: "number", min: 0, step: 0.01 },
+    ],
     dates: [],
     selections: [
       { name: "priority", options: ["LOW", "HIGH", "CRITICAL"] },

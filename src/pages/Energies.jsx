@@ -67,7 +67,7 @@ export default function Energies() {
       method: "post",
       data: newRecord,
     },
-    inputs: ["measured"],
+    inputs: [{ name: "measured", type: "number", min: 0, step: 0.01 }],
     dates: ["date"],
     selections: [{ name: "type", options: ["Electricity", "Gas", "Water"] }],
     submitName: "CREATE RECORD",

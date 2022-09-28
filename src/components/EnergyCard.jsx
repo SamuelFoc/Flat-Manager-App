@@ -12,17 +12,19 @@ export default function EnergyCard(props) {
           <span>
             <FontAwesomeIcon icon={faCalendarPlus} />
             &emsp;
-            {new Date(props.info.createdAt).toLocaleDateString("en-GB", {
+            {new Date(props?.info?.measured_at).toLocaleDateString("en-GB", {
               dateStyle: "medium",
             })}
           </span>
         </div>
-        <div className="col-2 d-flex align-items-center">{props.info.type}</div>
+        <div className="col-2 d-flex align-items-center">
+          {props?.info?.type}
+        </div>
         <div className="col-6 align-items-center d-flex justify-content-end">
           <FontAwesomeIcon icon={faRuler} />
           <span className="d-flex align-items-center">
-            &emsp;{props.info.measured_value}&ensp;
-            {props.type === "water" || props.type === "gas" ? (
+            &emsp;{props?.info?.measured_value}&ensp;
+            {props?.type === "water" || props?.type === "gas" ? (
               <p className="m-0">
                 m<sup>3</sup>
               </p>
