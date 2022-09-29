@@ -1,16 +1,31 @@
 import { useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import Unit from "./AdminServiceCard";
+import HiddenForm from "../../components/HiddenForm";
 import "../../Custom.css";
 
 const Services = (props) => {
   const [formData, setFormData] = useState();
-  const [showUserForm, setShowUserForm] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [showBox, setShowBox] = useState(false);
   const axiosPrivate = useAxiosPrivate();
+  const [id, setId] = useState(false);
+
+  // TODO: Service Editing
+  const [isForm, setIsForm] = useState(false);
+  const showEditForm = (id) => {
+    setIsForm((prevState) => !prevState);
+    setId(id);
+    setFormData({});
+  };
+
+  const showCreateForm = (id) => {
+    setIsForm((prevState) => !prevState);
+    setId(false);
+    setFormData({});
+  };
 
   const setVisibility = () => {
-    setShowUserForm((prevState) => !prevState);
+    setShowBox((prevState) => !prevState);
   };
 
   const handleChange = (event) => {
@@ -33,35 +48,28 @@ const Services = (props) => {
       });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    var data = JSON.stringify(formData);
-    console.log(data);
-    var config = {
-      method: "post",
-      url: "/admin/units",
-      data: data,
-    };
-
-    axiosPrivate(config)
-      .then((res) => {
-        props.showMsg("Unit created successfully.");
-        props.addError("");
-        setIsLoading(false);
-      })
-      .catch(function (error) {
-        props.showMsg("Unit creation failed.");
-        props.addError(error.message);
-        setIsLoading(false);
-      });
+  const formConfig = {
+    type: "small",
+    submit: {
+      url: id ? `/admin/unit/${id}` : "admin/unit",
+      method: id ? "put" : "post",
+      data: formData,
+    },
+    inputs: [
+      { name: "name" },
+      { name: "unit_price", type: "number", min: 0, step: 0.01 },
+    ],
+    selections: [
+      { name: "unit", options: ["l", "kg", "g", "kWh", "m", "m2", "m3"] },
+    ],
+    submitName: id ? "EDIT" : "CREATE",
   };
+
   return (
     <div className="w-100">
       <div className="d-flex align-items-center justify-content-between">
         <h3>Units</h3>
-        {!showUserForm ? (
+        {!showBox ? (
           <button
             className="btn btn-outline-warning my-2"
             onClick={setVisibility}
@@ -77,60 +85,35 @@ const Services = (props) => {
           </button>
         )}
       </div>
-      <div className={showUserForm ? "formBox" : "formBox hidden"}>
-        <form onSubmit={handleSubmit} className="row">
-          <div className="col-12 px-5">
-            <div class=" mb-3">
-              <input
-                type="text"
-                className="form-control input"
-                name="name"
-                placeholder="Unit name"
-                onChange={handleChange}
-              />
-            </div>
-            <div class=" mb-3">
-              <input
-                type="number"
-                step={0.01}
-                className="form-control input"
-                name="unit_price"
-                placeholder="Unit price"
-                onChange={handleChange}
-              />
-            </div>
-            <div class="mb-3">
-              <input
-                type="text"
-                className="form-control input"
-                name="unit"
-                placeholder="Unit"
-                onChange={handleChange}
-              />
-            </div>
-            {isLoading ? (
-              <button className="btn btn-primary mt-4 btn-w">
-                <span
-                  className="spinner-border spinner-border-sm me-4"
-                  role="status"
-                  aria-hidden="true"
-                ></span>
-                Loading...
-              </button>
-            ) : (
-              <button className="btn btn-primary mt-4 btn-w">ADD UNIT</button>
-            )}
-          </div>
-        </form>
+      <div className={showBox ? "formBox" : "formBox hidden"}>
+        {isForm && (
+          <HiddenForm
+            formInfo={formConfig}
+            showForm={showEditForm}
+            handleChange={handleChange}
+            whatFailed={props.addError}
+            whatChanged={props.showMsg}
+          />
+        )}
         <div className="text-light my-2">
           {props?.units?.length > 0 ? (
             props?.units?.map((service) => (
-              <Unit info={service} handleDelete={deleteRecord} />
+              <Unit
+                info={service}
+                showForm={showEditForm}
+                handleDelete={deleteRecord}
+              />
             ))
           ) : (
-            <h6 className=" m-2 text-light">There are no services in DB..</h6>
+            <h6 className=" m-2 text-light">There are no units in DB..</h6>
           )}
         </div>
+        <button
+          className="btn btn-outline-success my-2"
+          onClick={showCreateForm}
+        >
+          Add Unit
+        </button>
       </div>
     </div>
   );
