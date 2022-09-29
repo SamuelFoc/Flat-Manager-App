@@ -1,27 +1,31 @@
 import { useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import ServiceCard from "./AdminServiceCard";
+import HiddenForm from "../../components/HiddenForm";
 import "../../Custom.css";
 
 const Services = (props) => {
   const [formData, setFormData] = useState();
-  const [showUserForm, setShowUserForm] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [showBox, setShowBox] = useState(false);
   const axiosPrivate = useAxiosPrivate();
+  const [id, setId] = useState(false);
 
-  const setVisibility = () => {
-    setShowUserForm((prevState) => !prevState);
+  // TODO: Service Editing
+  const [isForm, setIsForm] = useState(false);
+  const showEditForm = (id) => {
+    setIsForm((prevState) => !prevState);
+    setId(id);
+    setFormData({});
   };
 
-  const deleteRecord = (id) => {
-    axiosPrivate
-      .delete(`/admin/service/${id}`)
-      .then(() => {
-        props.showMsg(`Service ID: ${id} deleted succesfully.`);
-      })
-      .catch((err) => {
-        props.addError(`Error occurred while deleting ID: ${id}.`);
-      });
+  const showCreateForm = (id) => {
+    setIsForm((prevState) => !prevState);
+    setId(false);
+    setFormData({});
+  };
+
+  const setVisibility = () => {
+    setShowBox((prevState) => !prevState);
   };
 
   const handleChange = (event) => {
@@ -33,35 +37,38 @@ const Services = (props) => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
+  const formConfig = {
+    type: "small",
+    submit: {
+      url: id ? `/admin/service/${id}` : "admin/service",
+      method: id ? "put" : "post",
+      data: formData,
+    },
+    inputs: [
+      { name: "name" },
+      { name: "monthly_price", type: "number", min: 0 },
+      { name: "pay_day", type: "number", min: 1, max: 31 },
+    ],
+    submitName: id ? "EDIT" : "CREATE",
+  };
 
-    var data = JSON.stringify(formData);
-    console.log(data);
-    var config = {
-      method: "post",
-      url: "/admin/services",
-      data: data,
-    };
-
-    axiosPrivate(config)
-      .then((res) => {
-        props.showMsg("Service created successfully.");
-        props.addError("");
-        setIsLoading(false);
+  // TODO DELETE RECORD
+  const deleteRecord = (id) => {
+    axiosPrivate
+      .delete(`/admin/service/${id}`)
+      .then(() => {
+        props.showMsg(`Service ID: ${id} deleted succesfully.`);
       })
-      .catch(function (error) {
-        props.showMsg("Service creation failed.");
-        props.addError(error.message);
-        setIsLoading(false);
+      .catch((err) => {
+        props.addError(`Error occurred while deleting ID: ${id}.`);
       });
   };
+
   return (
     <div className="w-100">
       <div className="d-flex align-items-center justify-content-between">
         <h3>Services</h3>
-        {!showUserForm ? (
+        {!showBox ? (
           <button
             className="btn btn-outline-warning my-2"
             onClick={setVisibility}
@@ -77,61 +84,35 @@ const Services = (props) => {
           </button>
         )}
       </div>
-      <div className={showUserForm ? "formBox" : "formBox hidden"}>
-        <form onSubmit={handleSubmit} className="row">
-          <div className="col-12 px-5">
-            <div class=" mb-3">
-              <input
-                type="text"
-                className="form-control input"
-                name="name"
-                onChange={handleChange}
-                placeholder="Name"
-              />
-            </div>
-            <div class=" mb-3">
-              <input
-                type="number"
-                className="form-control input"
-                name="monthly_price"
-                placeholder="Monthly price"
-                onChange={handleChange}
-              />
-            </div>
-            <div class=" mb-3">
-              <input
-                type="number"
-                className="form-control input"
-                name="pay_day"
-                placeholder="Payment day"
-                onChange={handleChange}
-              />
-            </div>
-            {isLoading ? (
-              <button className="btn btn-primary mt-4 btn-w">
-                <span
-                  className="spinner-border spinner-border-sm me-4"
-                  role="status"
-                  aria-hidden="true"
-                ></span>
-                Loading...
-              </button>
-            ) : (
-              <button className="btn btn-primary mt-4 btn-w">
-                ADD SERVICE
-              </button>
-            )}
-          </div>
-        </form>
+      <div className={showBox ? "formBox" : "formBox hidden"}>
+        {isForm && (
+          <HiddenForm
+            formInfo={formConfig}
+            showForm={showEditForm}
+            handleChange={handleChange}
+            whatFailed={props.addError}
+            whatChanged={props.showMsg}
+          />
+        )}
         <div className="text-light my-2">
           {props?.services?.length > 0 ? (
             props?.services?.map((service) => (
-              <ServiceCard info={service} handleDelete={deleteRecord} />
+              <ServiceCard
+                info={service}
+                showForm={showEditForm}
+                handleDelete={deleteRecord}
+              />
             ))
           ) : (
             <h6 className=" m-2 text-light">There are no services in DB..</h6>
           )}
         </div>
+        <button
+          className="btn btn-outline-success my-2"
+          onClick={showCreateForm}
+        >
+          Add Service
+        </button>
       </div>
     </div>
   );
