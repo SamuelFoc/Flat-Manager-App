@@ -7,8 +7,17 @@ function HiddenForm(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const method = props.formInfo.submit.method;
+    const url = props.formInfo.submit.url;
     var data = JSON.stringify(props.formInfo.submit.data);
-    console.log(props.formInfo.submit.data);
+    const message =
+      method === "post"
+        ? `Posted new ${url.split("/").pop()}: ${
+            Object.values(props.formInfo.submit.data)[0]
+          }.`
+        : `Edited ${url.split("/")[url.split("/").length - 2]}: ${
+            Object.values(props.formInfo.submit.data)[0]
+          }.`;
     var config = {
       method: props.formInfo.submit.method,
       url: props.formInfo.submit.url,
@@ -18,15 +27,23 @@ function HiddenForm(props) {
     axiosPrivate(config)
       .then((res) => {
         props.showForm(false);
-        props.whatChanged(false);
+        props.whatChanged(message);
+        props.whatFailed("");
       })
-      .catch(function (error) {
+      .catch((error) => {
+        props.whatFailed(error?.response?.data);
         console.log(error);
       });
   };
 
   return (
-    <div className="afterElementForm">
+    <div
+      className={
+        props.formInfo.type === "small"
+          ? "smallAfterElementForm"
+          : "afterElementForm"
+      }
+    >
       <form>
         {/* INPUTS */}
         {props.formInfo?.inputs?.map((input, i) => {
@@ -84,6 +101,23 @@ function HiddenForm(props) {
                 );
               })}
             </select>
+          );
+        })}
+
+        {props.formInfo?.checks?.map((input, i) => {
+          return (
+            <div key={i} className="text-light form-check">
+              <label className="form-check-label" htmlFor={input}>
+                {input?.name[0]?.toUpperCase() + input?.name?.slice(1)}
+              </label>
+              <input
+                className="form-check-input mb-2"
+                onChange={props?.handleChange}
+                type="checkbox"
+                name={input?.name}
+                id={input?.name}
+              />
+            </div>
           );
         })}
 
