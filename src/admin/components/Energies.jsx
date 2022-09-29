@@ -1,15 +1,53 @@
 import { useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import EnergyCard from "./AdminEnergyCard";
+import HiddenForm from "../../components/HiddenForm";
 import "../../Custom.css";
 
 const Energy = (props) => {
-  const [showUserForm, setShowUserForm] = useState(false);
-  const energy = props.energies;
+  const [showBox, setShowBox] = useState();
+  const [formData, setFormData] = useState(false);
   const axiosPrivate = useAxiosPrivate();
+  const [id, setId] = useState(false);
+
+  // TODO: Service Editing
+  const [isForm, setIsForm] = useState(false);
+  const showEditForm = (id) => {
+    setIsForm((prevState) => !prevState);
+    setId(id);
+    setFormData({});
+  };
+
+  const showCreateForm = (id) => {
+    setIsForm((prevState) => !prevState);
+    setId(false);
+    setFormData({});
+  };
 
   const setVisibility = () => {
-    setShowUserForm((prevState) => !prevState);
+    setShowBox((prevState) => !prevState);
+  };
+
+  const handleChange = (event) => {
+    setFormData((prevFormData) => {
+      return {
+        ...prevFormData,
+        [event.target.name]: event.target.value,
+      };
+    });
+  };
+
+  const formConfig = {
+    type: "small",
+    submit: {
+      url: id ? `/admin/energy/${id}` : "admin/energy",
+      method: id ? "put" : "post",
+      data: formData,
+    },
+    inputs: [{ name: "measured" }],
+    dates: ["date"],
+    selections: [{ name: "type", options: ["Electricity", "Water", "Gas"] }],
+    submitName: id ? "EDIT" : "CREATE",
   };
 
   const deleteRecord = (id) => {
@@ -27,7 +65,7 @@ const Energy = (props) => {
     <div className="w-100">
       <div className="d-flex align-items-center justify-content-between">
         <h3>Energies</h3>
-        {!showUserForm ? (
+        {!showBox ? (
           <button
             className="btn btn-outline-warning my-2"
             onClick={setVisibility}
@@ -43,12 +81,22 @@ const Energy = (props) => {
           </button>
         )}
       </div>
-      <div className={showUserForm ? "formBox" : "formBox hidden"}>
+      <div className={showBox ? "formBox" : "formBox hidden"}>
+        {isForm && (
+          <HiddenForm
+            formInfo={formConfig}
+            showForm={showEditForm}
+            handleChange={handleChange}
+            whatFailed={props.addError}
+            whatChanged={props.showMsg}
+          />
+        )}
         <div className="text-light my-4">
-          {energy?.water?.length > 0 ? (
-            energy?.water?.map((energy, i) => (
+          {props?.energies?.water?.length > 0 ? (
+            props?.energies?.water?.map((energy, i) => (
               <EnergyCard
                 handleDelete={deleteRecord}
+                showForm={showEditForm}
                 key={i}
                 info={energy}
                 type={"water"}
@@ -57,10 +105,11 @@ const Energy = (props) => {
           ) : (
             <h6>There are no water consumption records..</h6>
           )}
-          {energy?.gas?.length > 0 ? (
-            energy?.gas?.map((energy, i) => (
+          {props?.energies?.gas?.length > 0 ? (
+            props?.energies?.gas?.map((energy, i) => (
               <EnergyCard
                 handleDelete={deleteRecord}
+                showForm={showEditForm}
                 key={i}
                 info={energy}
                 type={"gas"}
@@ -69,10 +118,11 @@ const Energy = (props) => {
           ) : (
             <h6>There are no gas consumption records..</h6>
           )}
-          {energy?.electricity?.length > 0 ? (
-            energy?.electricity?.map((energy, i) => (
+          {props?.energies?.electricity?.length > 0 ? (
+            props?.energies?.electricity?.map((energy, i) => (
               <EnergyCard
                 handleDelete={deleteRecord}
+                showForm={showEditForm}
                 key={i}
                 info={energy}
                 type={"electricity"}
@@ -82,6 +132,12 @@ const Energy = (props) => {
             <h6>There are no electricity consumption records..</h6>
           )}
         </div>
+        <button
+          className="btn btn-outline-success my-2"
+          onClick={showCreateForm}
+        >
+          Add Record
+        </button>
       </div>
     </div>
   );

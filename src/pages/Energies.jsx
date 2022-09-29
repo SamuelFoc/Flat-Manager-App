@@ -5,12 +5,10 @@ import { faDroplet } from "@fortawesome/free-solid-svg-icons";
 import { faFireFlameCurved } from "@fortawesome/free-solid-svg-icons";
 import { faPlug } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Energies.css";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import EnergyCard from "../components/EnergyCard";
 import HiddenForm from "../components/HiddenForm";
-import Statistics from "../components/Statistics";
 
 export default function Energies() {
   // TODO: STATES
@@ -26,6 +24,7 @@ export default function Energies() {
   const showFormCreate = () => {
     setIsShowedCreate(!isShowedCreate);
     setWhatChanged("creation");
+    setNewRecord({});
   };
 
   const handleChange = (event) => {
@@ -138,15 +137,6 @@ export default function Energies() {
                 </div>
               )}
             </div>
-          </div>
-        </div>
-        <div className="row mx-md-5">
-          <h6 className="mb-2">
-            Consumption Statistics{" "}
-            <FontAwesomeIcon icon={faChartLine} className="critical-priority" />
-          </h6>
-          <div className="border rounded chartHolder d-flex justify-content-center py-4">
-            <Statistics data={energyData} />
           </div>
         </div>
       </div>
