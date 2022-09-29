@@ -1,9 +1,9 @@
 import React from "react";
 import "./styles/AdminServiceCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 import { faCalendarCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 const ServiceCard = (props) => {
   return (
@@ -20,7 +20,6 @@ const ServiceCard = (props) => {
           {props?.info?.name}
         </div>
         <div className="col-6 align-items-center d-flex justify-content-end">
-          <FontAwesomeIcon icon={faMoneyBill} />
           <span className="d-flex align-items-center">
             &emsp;
             {props?.info?.unit_price
@@ -30,9 +29,16 @@ const ServiceCard = (props) => {
             {`CZK${
               props?.info?.unit
                 ? `/${props?.info?.unit}`
-                : ` payed at ${props?.info?.pay_day}th`
+                : ` payed by ${props?.info?.pay_day}th`
             }`}
           </span>
+          <button
+            type="button"
+            className="btn btn-outline-warning ms-4"
+            onClick={() => props.showForm(props?.info?.id)}
+          >
+            <FontAwesomeIcon icon={faEdit} />
+          </button>
           <button
             type="button"
             className="btn btn-outline-danger ms-4"
