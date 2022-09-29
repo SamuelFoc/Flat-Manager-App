@@ -29,6 +29,7 @@ export default function Responsibilities() {
   const showFormCreate = () => {
     setIsShowedCreate(!isShowedCreate);
     setId(false);
+    setNewResp({});
     setWhatChanged("creation");
   };
 

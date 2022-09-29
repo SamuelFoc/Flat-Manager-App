@@ -34,12 +34,14 @@ export default function ShoppingList() {
   const showFormCreate = () => {
     setIsShowedCreate(!isShowedCreate);
     setId(false);
+    setNewProduct({});
     setWhatChanged("creation");
   };
 
   const showFormEdit = (id) => {
     setIsShowedCreate(!isShowedCreate);
     setId(id);
+    setNewProduct({});
     setWhatChanged("edit");
   };
 
