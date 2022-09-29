@@ -2,6 +2,7 @@ import React from "react";
 import "./styles/AdminUserCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 const UserCard = (props) => {
@@ -20,8 +21,15 @@ const UserCard = (props) => {
             new Date(props?.info?.createdAt)?.toLocaleTimeString("en-GB")}
           <button
             type="button"
+            className="btn btn-outline-warning ms-4"
+            onClick={() => props.showForm(props?.info?.username)}
+          >
+            <FontAwesomeIcon icon={faEdit} />
+          </button>
+          <button
+            type="button"
             className="btn btn-outline-danger ms-4"
-            onClick={() => props.handleDelete(props.info.username)}
+            onClick={() => props.handleDelete(props?.info?.username)}
           >
             <FontAwesomeIcon icon={faTrashAlt} />
           </button>
