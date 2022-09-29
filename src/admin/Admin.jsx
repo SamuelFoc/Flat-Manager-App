@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import Users from "./components/Users";
 import Energies from "./components/Energies";
 import Units from "./components/Units";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import "./Admin.css";
 import { axiosPrivate } from "../api/axios";
@@ -35,6 +37,13 @@ const Admin = () => {
     getData();
   }, [newMsg]);
 
+  const hideError = () => {
+    setNewError("");
+  };
+  const hideSuccess = () => {
+    setNewMsg("");
+  };
+
   return (
     <section className="adminPage container-fluid">
       <div className="adminMsgBox">
@@ -42,7 +51,7 @@ const Admin = () => {
           {newMsg || newError ? (
             ""
           ) : (
-            <p className="bg-secondary p-2 mt-2 rounded">No messages</p>
+            <p className="p-2 mt-2 adminMessage">No messages</p>
           )}
         </h4>
         <div
@@ -52,6 +61,11 @@ const Admin = () => {
           role="alert"
         >
           {newError}
+          <FontAwesomeIcon
+            icon={faXmark}
+            className="xMark"
+            onClick={hideError}
+          />
         </div>
         <div
           className={
@@ -59,6 +73,11 @@ const Admin = () => {
           }
           role="alert"
         >
+          <FontAwesomeIcon
+            icon={faXmark}
+            className="xMark-success"
+            onClick={hideSuccess}
+          />
           {newMsg}
         </div>
       </div>
