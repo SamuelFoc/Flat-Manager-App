@@ -1,0 +1,19 @@
+.chartContainer {
+  display: flex;
+  width: 50vw;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+@media only screen and (max-width: 1068px) {
+  .chartContainer {
+    width: 90vw;
+  }
+}
+
+.chartBox {
+  margin: 10px 20px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.395);
+  backdrop-filter: blur(8px);
+}

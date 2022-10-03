@@ -1,0 +1,6 @@
+.statsBox {
+  padding: 10px 20px;
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.338);
+}

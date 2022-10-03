@@ -10,6 +10,7 @@ import { faFireFlameSimple } from "@fortawesome/free-solid-svg-icons";
 import { faBellConcierge } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
   return (
@@ -44,6 +45,9 @@ function Navbar() {
               className="nav-item mx-3"
             />
           </NavLink>
+          <NavLink to="/statistics">
+            <FontAwesomeIcon icon={faChartBar} className="nav-item mx-3" />
+          </NavLink>
           <NavLink to="/services">
             <FontAwesomeIcon
               icon={faBellConcierge}
@@ -77,6 +81,9 @@ function Navbar() {
               icon={faFireFlameSimple}
               className="nav-item my-3"
             />
+          </NavLink>
+          <NavLink to="/statistics">
+            <FontAwesomeIcon icon={faChartBar} className="nav-item mx-3" />
           </NavLink>
           <NavLink to="/services">
             <FontAwesomeIcon

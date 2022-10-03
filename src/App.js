@@ -12,6 +12,8 @@ import { Routes, Route } from "react-router-dom";
 import Admin from "./admin/Admin";
 import Logout from "./pages/Logout";
 import Services from "./pages/Services";
+import Events from "./pages/Events";
+import Statistics from "./pages/Statistics";
 
 const ROLES = {
   User: "User",
@@ -38,7 +40,9 @@ function App() {
             <Route path="/shoppingList" element={<ShoppingList />} />
             <Route path="/responsibilities" element={<Responsibilities />} />
             <Route path="/energies" element={<Energies />} />
+            <Route path="/statistics" element={<Statistics />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/events" element={<Events />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Route>
