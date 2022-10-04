@@ -1,4 +1,4 @@
-.menuBox {
+.userHomeMainSection {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -11,12 +11,12 @@
 }
 
 @media only screen and (max-width: 1568px) {
-  .menuBox {
+  .userHomeMainSection {
     justify-content: flex-start;
   }
 }
 
-.menuItem {
+.userHomeItem {
   background-color: var(--dark-color);
   min-width: 10rem;
   height: 10rem;
@@ -24,7 +24,7 @@
   position: relative;
   transition: 0.4s;
 }
-.menuItem:hover {
+.userHomeItem:hover {
   transform: scale(1.03, 1.03);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.548);
   border-bottom: 5px solid var(--accent-color);
@@ -32,11 +32,11 @@
   transform: rotate3d(-1, 1, 0, 25deg);
 }
 
-.menuItemIcon {
+.userHomeItemIcon {
   color: var(--lighter-text-color);
 }
 
-.menuItemTitle {
+.userHomeSubTitle {
   color: var(--lighter-text-color);
   position: absolute;
   bottom: 0.5rem;

@@ -1,6 +1,8 @@
+import "./styles/LoginLogo.css";
+
 function LoginLogo() {
   return (
-    <div className="login-logo">
+    <div className="logoComponent">
       <svg
         width="60"
         viewBox="0 0 212 171"

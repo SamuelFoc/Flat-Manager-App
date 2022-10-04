@@ -10,8 +10,13 @@
   --text-color: #ffffff;
   --lighter-text-color: #e7e6e6;
   --accent-color: #f11f81;
+  --glass-bcg-color: rgba(255, 255, 255, 0.075);
+
+  --glass-bcg-blur: 8px;
+  --glass-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.178);
 }
 
+/* BACKGROUND */
 body {
   background: linear-gradient(
     -5deg,
@@ -46,62 +51,21 @@ body {
   z-index: -2;
 }
 
-.mainGlass {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100vw;
-  max-height: 50vh;
-  overflow: auto;
-  color: var(--text-color);
-  background-color: rgba(255, 255, 255, 0.075);
-  backdrop-filter: blur(7px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.178);
-}
-@media only screen and (max-width: 1568px) {
-  .mainGlass {
-    grid-template-columns: auto auto auto;
-  }
-}
-@media only screen and (max-width: 1068px) {
-  .mainGlass {
-    grid-template-columns: auto auto;
-    max-height: 55vh;
-  }
-}
-@media only screen and (max-width: 680px) {
-  .mainGlass {
-    grid-template-columns: auto;
-    max-height: 65vh;
-  }
-}
-
-.color-light {
-  color: var(--lighter-text-color);
-}
-
-.btn-custom {
-  background-color: #f11f81;
-  padding: 10px 15px;
-  border-radius: 10px;
-}
-.btn-custom:hover {
-  background-color: #aa135a;
-  cursor: pointer;
-  transform: scale(1.06);
-}
-
+/* LINKS */
 .active > * {
-  color: white;
+  color: var(--text-color);
 }
 .active {
   border-bottom: 5px solid #e408a2;
-  color: white;
-  padding: 10px 10px;
+  padding: 5px 0px;
   border-radius: 5px;
 }
-
+@media only screen and (max-width: 1000px) {
+  .active {
+    padding: 0;
+    border-bottom: 3px solid #e408a2;
+  }
+}
 .link {
   text-decoration: none;
   color: #cecbc8;
@@ -111,6 +75,20 @@ body {
   color: #cecbc8;
 }
 
+/* FONTSIZE */
+.large-text {
+  font-size: 16px;
+}
+
+.medium-text {
+  font-size: 13px;
+}
+
+.small-text {
+  font-size: 11px;
+}
+
+/* SCROLLBAR */
 /* width */
 ::-webkit-scrollbar {
   height: 6px;
@@ -134,6 +112,7 @@ body {
   background: rgb(22, 34, 87);
 }
 
+/* ANIMATIONS */
 @keyframes rotation {
   0% {
     transform: rotateZ(0);

@@ -1,9 +1,15 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+// * Components
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
+// * Charts
 import Service from "../components/ServiceCard";
-import "../Custom.css";
+import PieChart from "../components/statistics/charts/PieChart";
+import BarChart from "../components/statistics/charts/BarChart";
+
+// TODO: CSS
+import "./styles/Services.css";
 
 const Services = () => {
   // TODO: STATES
@@ -38,32 +44,88 @@ const Services = () => {
     };
   }, [axiosPrivate, location, navigate]);
 
+  const PieData = {
+    labels: serviceData?.map((item) => item.name),
+    datasets: [
+      {
+        label: "All services",
+        data: serviceData?.map((item) => item.monthly_price),
+        backgroundColor: [
+          "#905CCE",
+          "#456EDD",
+          "#DD268B",
+          "#E53232",
+          "#2F4858",
+          "#FFE5DC",
+        ],
+        borderColor: "white",
+        borderWidth: 1,
+      },
+    ],
+  };
+  const BarData = {
+    labels: unitsData?.map((item) => item.name),
+    datasets: [
+      {
+        label: "All services",
+        data: unitsData?.map((item) => item.unit_price),
+        backgroundColor: [
+          "#905CCE",
+          "#456EDD",
+          "#DD268B",
+          "#E53232",
+          "#2F4858",
+          "#FFE5DC",
+        ],
+        borderColor: "white",
+        borderWidth: 1,
+      },
+    ],
+  };
+
   return (
-    <div className="text-light serviceContainer container-fluid mt-5">
-      <div className="row">
-        <div className="col-12 pe-5 pe-md-0 col-xxl-6">
-          <div>
-            <h3 className="m-2 custom-pill-box">Monthly payable services</h3>
-          </div>
-          <div className="serviceColumn">
-            {serviceData?.length > 0 ? (
-              serviceData?.map((service) => <Service info={service} />)
-            ) : (
-              <h6>There are no services in DB..</h6>
-            )}
-          </div>
+    <div className="servicesMainSection">
+      <div className="servicesMainContainer">
+        <div className="text-end text-md-start">
+          <h3 className="m-2 custom-pill-box">Monthly payable services</h3>
         </div>
-        <div className="col-12 pe-5 pe-md-0 col-xxl-6">
-          <div>
-            <h3 className="m-2 custom-pill-box">Unit prices</h3>
-          </div>
-          <div className="serviceColumn">
-            {unitsData?.length > 0 ? (
-              unitsData?.map((service) => <Service info={service} />)
-            ) : (
-              <h6>There are no services in DB..</h6>
-            )}
-          </div>
+        <div className="servicesSubContainer">
+          {serviceData?.length > 0 ? (
+            serviceData?.map((service) => <Service info={service} />)
+          ) : (
+            <h6>There are no services in DB..</h6>
+          )}
+        </div>
+        <div className="pieChartBox">
+          {serviceData?.length > 0 ? (
+            <div className="pieChart">
+              <PieChart chartData={PieData} />
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+      </div>
+
+      <div className="servicesMainContainer">
+        <div className="text-end text-md-start">
+          <h3 className="m-2 custom-pill-box">Unit prices</h3>
+        </div>
+        <div className="servicesSubContainer">
+          {unitsData?.length > 0 ? (
+            unitsData?.map((service) => <Service info={service} />)
+          ) : (
+            <h6>There are no services in DB..</h6>
+          )}
+        </div>
+        <div className="barChartBox">
+          {unitsData?.length > 0 ? (
+            <div className="barChart">
+              <BarChart chartData={BarData} />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

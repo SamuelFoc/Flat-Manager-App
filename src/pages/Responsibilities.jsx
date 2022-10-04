@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+// * Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTemperatureArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { faTemperatureThreeQuarters } from "@fortawesome/free-solid-svg-icons";
 import { faTemperatureQuarter } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+// * Components
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import RespCard from "../components/RespCard";
 import HiddenForm from "../components/HiddenForm";
+
+// TODO: CSS
+import "./styles/Responsibilities.css";
 
 export default function Responsibilities() {
   // TODO: STATES
@@ -101,19 +106,19 @@ export default function Responsibilities() {
   };
 
   return (
-    <div className="">
-      <h3 className="color-light ms-3">
+    <div className="responsibilitiesMainSection">
+      <h3 className="responsibilitiesMainTitle">
         My Responsibilities{" "}
         <FontAwesomeIcon
           icon={faPlus}
-          className="config color-light ms-3 btn-custom"
+          className="mainButton"
           onClick={showFormCreate}
         />
       </h3>
-      <div className="respBox text-light mt-4 pe-5">
+      <div className="responsibilitiesMainContainer">
         <div className="row d-flex justify-content-center w-100">
           <div className="col-12 col-md-8 col-xl-6 col-xxl-4 p-2">
-            <h6 className="ms-2 mb-4">
+            <h6 className="responsibilitiesSubTitle">
               Critical priority{" "}
               <FontAwesomeIcon
                 icon={faTemperatureArrowUp}
@@ -138,7 +143,7 @@ export default function Responsibilities() {
             </div>
           </div>
           <div className="col-12 col-md-8 col-xl-6 col-xxl-4 p-2 ">
-            <h6 className="ms-2 mb-4">
+            <h6 className="responsibilitiesSubTitle">
               High priority{" "}
               <FontAwesomeIcon
                 icon={faTemperatureThreeQuarters}
@@ -163,7 +168,7 @@ export default function Responsibilities() {
             </div>
           </div>
           <div className="col-12 col-md-8 col-xl-6 col-xxl-4 p-2 ">
-            <h6 className="ms-2 mb-4">
+            <h6 className="responsibilitiesSubTitle">
               Low priority{" "}
               <FontAwesomeIcon
                 icon={faTemperatureQuarter}

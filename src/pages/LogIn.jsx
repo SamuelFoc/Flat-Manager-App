@@ -1,13 +1,18 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
+// * Components
 import useAuth from "../hooks/useAuth";
 import Logo from "../components/LoginLogo";
-import "../styles/Login.css";
-// AXIOS SET
+
+// TODO: CSS
+import "./styles/Login.css";
+
+// TODO: AXIOS SET
 import axios from "../api/axios";
 const LOGIN_URL = "/login";
 
 const LogIn = () => {
+  // TODO: STATES
   const { setAuth } = useAuth();
 
   const navigate = useNavigate();
@@ -22,6 +27,7 @@ const LogIn = () => {
   const [errMsg, setErrMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  // TODO: FETCH DATA
   useEffect(() => {
     userRef.current.focus();
   }, []);
@@ -67,8 +73,8 @@ const LogIn = () => {
   };
 
   return (
-    <section className="login-section">
-      <div className="login-bcg-logo">
+    <section className="loginMainSection">
+      <div className="loginBackgroundText">
         <h1>FLAT MANAGER</h1>
       </div>
       <Logo />
@@ -78,12 +84,12 @@ const LogIn = () => {
         aria-live="assertive"
       >
         {errMsg}
-        <i className="errMsg-xMark" onClick={() => setErrMsg(false)}>
+        <i className="xMark" onClick={() => setErrMsg(false)}>
           ×
         </i>
       </p>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit} className="login-form">
+      <h1 className="loginMainTitle">Log In</h1>
+      <form onSubmit={handleSubmit} className="loginMainContainer">
         <label htmlFor="username" className="form-label">
           Username
         </label>

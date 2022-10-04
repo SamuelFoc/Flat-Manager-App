@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
-import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useNavigate, useLocation } from "react-router-dom";
+// * Components
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import UserCard from "../components/UserCard";
-import "../Custom.css";
+
+// TODO: CSS
+import "./styles/Users.css";
 
 export default function Home() {
   const [users, setUsers] = useState();
@@ -33,11 +36,11 @@ export default function Home() {
   }, [axiosPrivate, location, navigate]);
 
   return (
-    <div>
+    <div className="usersMainSection">
       <div className="ps-2">
         <h3 className="m-2 custom-pill-box">All accommodated</h3>
       </div>
-      <div className="usersBox mt-3 py-5">
+      <div className="usersMainContainer">
         {users?.length ? (
           users.map((user, i) => <UserCard key={i} info={user} />)
         ) : (

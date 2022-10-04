@@ -1,11 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
+// * Icons
 import { useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+// * Components
 import HiddenForm from "../components/HiddenForm";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import ProductCard from "../components/ProductCard";
+
+// TODO: CSS
+import "./styles/ShoppingList.css";
 
 export default function ShoppingList() {
   // TODO: STATES
@@ -108,16 +113,16 @@ export default function ShoppingList() {
   };
 
   return (
-    <div>
-      <h3 className="color-light ms-3">
+    <div className="shoppingListMainSection">
+      <h3 className="shoppingListMainTitle">
         Shopping List
         <FontAwesomeIcon
           icon={faPlus}
-          className="config color-light ms-3 btn-custom"
+          className="mainButton"
           onClick={showFormCreate}
         />
       </h3>
-      <div className="mainGlass mt-3 py-5">
+      <div className="shoppingListMainContainer">
         {products?.length ? (
           products.map((product, i) => (
             <ProductCard
@@ -128,7 +133,7 @@ export default function ShoppingList() {
             />
           ))
         ) : (
-          <h5>Shoping list is empty</h5>
+          <h5 className="noData">Shoping list is empty</h5>
         )}
       </div>
       {isShowedCreate && (

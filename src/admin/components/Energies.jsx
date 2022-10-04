@@ -2,7 +2,6 @@ import { useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import EnergyCard from "./AdminEnergyCard";
 import HiddenForm from "../../components/HiddenForm";
-import "../../Custom.css";
 
 const Energy = (props) => {
   const [showBox, setShowBox] = useState();

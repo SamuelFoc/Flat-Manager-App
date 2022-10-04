@@ -4,34 +4,6 @@
   overflow-y: auto;
 }
 
-.serviceColumn {
-  display: grid;
-  grid-template-columns: auto auto auto;
-}
-@media only screen and (max-width: 600px) {
-  .serviceColumn {
-    grid-template-columns: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-}
-@media only screen and (max-width: 800px) {
-  .serviceColumn {
-    grid-template-columns: auto auto;
-  }
-}
-@media only screen and (min-width: 801px) and (max-width: 1000px) {
-  .serviceColumn {
-    grid-template-columns: auto auto auto;
-  }
-}
-@media only screen and (min-width: 1001px) and (max-width: 1400px) {
-  .serviceColumn {
-    grid-template-columns: auto auto auto auto;
-  }
-}
-
 .serviceCardBox {
   padding: 1rem 1rem;
   margin: 1rem 1rem;

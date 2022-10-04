@@ -1,0 +1,94 @@
+/* Buttons */
+.mainButton {
+  background-color: var(--accent-color);
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.264);
+  font-size: 16px;
+  transition: 0.4s;
+  margin-left: 1rem;
+}
+.mainButton:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+/* Errors */
+.errmsg {
+  position: relative;
+  background-color: rgb(252, 160, 160);
+  color: rgba(229, 48, 48, 0.801);
+  font-weight: bold;
+  font-size: 16px;
+  padding: 10px 10px;
+  border-radius: 5px;
+}
+
+/* Data & Visibility */
+.offscreen {
+  position: absolute;
+  z-index: -1;
+  visibility: hidden;
+}
+.noData {
+  background-color: rgba(0, 0, 0, 0.308);
+  padding: 10px 20px;
+  margin: 0;
+  border-radius: 8px;
+  border: 2px solid rgba(0, 0, 0, 0.151);
+  font-size: 14px;
+}
+
+/* X-Marks */
+.xMark {
+  position: absolute;
+  top: 3px;
+  right: 6px;
+  transition: 0.3s;
+  padding: 2px;
+}
+.xMark:hover {
+  cursor: pointer;
+  background-color: red;
+  color: white;
+  border-radius: 3px;
+}
+.xMark-success {
+  position: absolute;
+  top: 3px;
+  right: 6px;
+  transition: 0.3s;
+  padding: 3px 5px;
+}
+.xMark-success:hover {
+  cursor: pointer;
+  background-color: rgb(57, 159, 7);
+  color: white;
+  border-radius: 3px;
+}
+
+/* COLORS */
+.critical-priority {
+  color: rgb(247, 73, 73);
+}
+.high-priority {
+  color: orange;
+}
+.low-priority {
+  color: rgb(0, 162, 255);
+}
+
+/* Titles */
+.custom-pill-box {
+  background: linear-gradient(
+    36deg,
+    rgba(194, 81, 0, 1) 0%,
+    rgb(240, 158, 34) 100%
+  );
+  font-size: large;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  border-radius: 25px;
+  max-width: 400px;
+  padding: 0.3rem 1rem;
+}

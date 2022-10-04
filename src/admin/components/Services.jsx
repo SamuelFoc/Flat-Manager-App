@@ -2,7 +2,6 @@ import { useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import ServiceCard from "./AdminServiceCard";
 import HiddenForm from "../../components/HiddenForm";
-import "../../Custom.css";
 
 const Services = (props) => {
   const [formData, setFormData] = useState();

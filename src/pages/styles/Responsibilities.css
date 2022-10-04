@@ -1,0 +1,33 @@
+.responsibilitiesMainSection {
+}
+
+.responsibilitiesMainContainer {
+  width: 100vw;
+  max-height: 65vh;
+
+  margin-top: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+
+  color: var(--text-color);
+  background-color: var(--glass-bcg-color);
+  backdrop-filter: blur(var(--glass-bcg-blur));
+  box-shadow: var(--glass-box-shadow);
+}
+
+.responsibilitiesMainTitle {
+  margin-left: 1rem;
+}
+
+.responsibilitiesSubTitle {
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+@media only screen and (max-width: 1068px) {
+  .responsibilitiesMainContainer {
+    justify-content: start;
+  }
+}

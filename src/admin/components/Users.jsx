@@ -2,7 +2,6 @@ import { useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import User from "./AdminUserCard";
 import HiddenForm from "../../components/HiddenForm";
-import "../../Custom.css";
 
 const Users = (props) => {
   const [formData, setFormData] = useState();

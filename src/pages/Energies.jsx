@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+// * Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDroplet } from "@fortawesome/free-solid-svg-icons";
 import { faFireFlameCurved } from "@fortawesome/free-solid-svg-icons";
 import { faPlug } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import "../styles/Energies.css";
+// * Components
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import EnergyCard from "../components/EnergyCard";
 import HiddenForm from "../components/HiddenForm";
+
+// TODO: CSS
+import "./styles/Energies.css";
 
 export default function Energies() {
   // TODO: STATES
@@ -36,7 +40,7 @@ export default function Energies() {
     });
   };
 
-  // TODO: EFFECTS
+  // TODO: FETCH DATA
   useEffect(() => {
     let isMounted = true;
     const controller = new AbortController();
@@ -73,19 +77,19 @@ export default function Energies() {
   };
 
   return (
-    <div className="mt-5">
-      <h3 className="color-light ms-3">
+    <div className="energiesMainSection">
+      <h3 className="energiesMainTitle">
         Energy Records{" "}
         <FontAwesomeIcon
           icon={faPlus}
-          className="config color-light ms-3 btn-custom"
+          className="mainButton"
           onClick={showFormCreate}
         />
       </h3>
-      <div className="energyBox flex-column text-light mt-4 pe-5">
+      <div className="energiesMainContainer">
         <div className="row d-flex w-100">
           <div className="col-12 col-xl-6 col-xxl-4 p-2 px-md-5">
-            <h6 className="ms-2 mb-4">
+            <h6 className="energiesSubTitle">
               Water consumption{" "}
               <FontAwesomeIcon icon={faDroplet} className="low-priority" />
             </h6>
@@ -102,7 +106,7 @@ export default function Energies() {
             </div>
           </div>
           <div className="col-12 col-xl-6 col-xxl-4 p-2 px-md-5">
-            <h6 className="ms-2 mb-4">
+            <h6 className="energiesSubTitle">
               Gas consumption{" "}
               <FontAwesomeIcon
                 icon={faFireFlameCurved}
@@ -122,9 +126,9 @@ export default function Energies() {
             </div>
           </div>
           <div className="col-12 col-xl-6 col-xxl-4 p-2 px-md-5">
-            <h6 className="ms-2 mb-4">
+            <h6 className="energiesSubTitle">
               Electricity consumption{" "}
-              <FontAwesomeIcon icon={faPlug} className="el-priority" />
+              <FontAwesomeIcon icon={faPlug} className="text-success" />
             </h6>
             <div className="row m-2">
               {energyData?.electricity?.length > 0 ? (
