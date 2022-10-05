@@ -8,6 +8,19 @@
 }
 
 * {
+  /* BACKGROUND -------------------------------------------------- */
+  --triangle-color: rgba(255, 0, 136, 0.916);
+  --background-gradient: linear-gradient(
+    -5deg,
+    rgb(19, 22, 48) 50%,
+    rgb(18, 26, 114) 70%,
+    rgb(78, 117, 233) 100%
+  );
+  /* rgba(27, 29, 46, 1) 50%,
+    rgba(39, 34, 83, 1) 70%,
+    rgba(59, 90, 184, 1) 100% */
+  /* _____________________________________________________________ */
+
   /* CARDS  ------------------------------------------------------ */
   --white-card-border: 1px solid rgba(255, 255, 255, 0.155);
   --white-card-bcg: linear-gradient(
@@ -49,7 +62,7 @@
   --nav-fs-title: 28px;
   --nav-fs-item: 18px;
   --nav-f-family: "Orbitron", sans-serif;
-  --sidenav-bcg-color: black;
+  --sidenav-bcg-color: rgba(0, 0, 0, 0.245);
   --sidenav-radius: 8px;
   /* _______________________________________________________________ */
 
@@ -78,17 +91,13 @@
   /* CHART --------------------------------------------------------- */
   --chart-bcg-color: rgba(0, 0, 0, 0.106);
   --chart-border: 2px solid rgba(0, 0, 0, 0.19);
+  --chart-fs-title: 22px;
   /* _______________________________________________________________ */
 }
 
 /* BACKGROUND */
 body {
-  background: linear-gradient(
-    -5deg,
-    rgba(27, 29, 46, 1) 50%,
-    rgba(39, 34, 83, 1) 70%,
-    rgba(59, 90, 184, 1) 100%
-  );
+  background: var(--background-gradient);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -106,6 +115,9 @@ body {
   animation-duration: 100s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+}
+.triangle-color {
+  fill: var(--triangle-color);
 }
 
 .blend {

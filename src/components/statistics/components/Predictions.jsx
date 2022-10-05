@@ -76,18 +76,24 @@ const AvgExps = () => {
     labels: gasAvgExps?.labels,
     datasets: [
       {
-        label: "AVG Gas expenses CZK/day",
+        label: "Gas - Used vs",
         data: gasAvgExps?.data,
-        backgroundColor: "#26D2A6",
-        borderColor: "#26D2A6",
-        borderWidth: 2,
+        backgroundColor: [
+          "#003B00",
+          "#006800",
+          "#009800",
+          "#44CB22",
+          "#7FFF5A",
+        ],
+        borderColor: "black",
+        borderWidth: 1,
       },
       {
-        label: "Payed",
+        label: "Paid",
         data: gasConst,
         backgroundColor: "#E53232",
-        borderColor: "#E53232",
-        borderWidth: 2,
+        borderColor: "black",
+        borderWidth: 1,
       },
     ],
   };
@@ -95,18 +101,24 @@ const AvgExps = () => {
     labels: watAvgExps?.labels,
     datasets: [
       {
-        label: "AVG Water expenses CZK/day",
+        label: "Water - Used vs",
         data: watAvgExps?.data,
-        backgroundColor: "#2680D2",
-        borderColor: "#black",
-        borderWidth: 2,
+        backgroundColor: [
+          "#3B66FF",
+          "#647FFF",
+          "#879AFF",
+          "#A8B5FF",
+          "#C9D1FF",
+        ],
+        borderColor: "black",
+        borderWidth: 1,
       },
       {
-        label: "Payed",
+        label: "Paid",
         data: watConst,
         backgroundColor: "#E53232",
-        borderColor: "#black",
-        borderWidth: 2,
+        borderColor: "black",
+        borderWidth: 1,
       },
     ],
   };
@@ -114,25 +126,31 @@ const AvgExps = () => {
     labels: elecAvgExps?.labels,
     datasets: [
       {
-        label: "AVG Electricity expenses CZK/day",
+        label: "Electricity - Used vs",
         data: elecAvgExps?.data,
-        backgroundColor: "#C5D226",
-        borderColor: "#C5D226",
-        borderWidth: 2,
+        backgroundColor: [
+          "#333500",
+          "#556300",
+          "#899400",
+          "#C3C800",
+          "#FFFF00",
+        ],
+        borderColor: "black",
+        borderWidth: 1,
       },
       {
-        label: "Payed",
+        label: "Paid",
         data: elecConst,
         backgroundColor: "#E53232",
         borderColor: "black",
-        borderWidth: 2,
+        borderWidth: 1,
       },
     ],
   };
 
   return (
     <div className="my-4">
-      <h3>Predictions</h3>
+      <h3 className="chartTitle">Predictions</h3>
       {loading ? (
         <h6 className="fw-light">
           Data not available, please check if all unit prices are defined

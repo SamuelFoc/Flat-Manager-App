@@ -11,19 +11,17 @@ const LineChart = ({ chartData }) => {
         display: true,
         labels: {
           color: "white",
+          padding: 5,
+          boxHeight: 8,
+          boxWidth: 8,
           font: {
-            // Add your font here to change the font of your legend label
-            size: 20,
-            weight: "bold",
+            size: 18,
+            family: "Orbitron",
           },
         },
         tooltip: {
-          bodyFont: {
-            family: "Montserrat", // Add your font here to change the font of your tooltip body
-          },
-          titleFont: {
-            family: "Montserrat", // Add your font here to change the font of your tooltip title
-          },
+          bodyFont: {},
+          titleFont: {},
         },
       },
     },

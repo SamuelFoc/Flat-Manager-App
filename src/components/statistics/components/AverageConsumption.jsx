@@ -36,12 +36,18 @@ const AvgCons = () => {
     labels: gasAvg?.labels,
     datasets: [
       {
-        label: "AVG Gas consumption m3/day",
+        label: "Gas - m3/day",
         data: gasAvg?.data,
-        backgroundColor: "#26D2A6",
+        backgroundColor: [
+          "#003B00",
+          "#006800",
+          "#009800",
+          "#44CB22",
+          "#7FFF5A",
+        ],
         borderColor: "black",
-        borderWidth: 2,
-        borderRadius: 3,
+        borderWidth: 1,
+        borderRadius: 5,
       },
     ],
   };
@@ -49,12 +55,18 @@ const AvgCons = () => {
     labels: waterAvg?.labels,
     datasets: [
       {
-        label: "AVG Water consumption m3/day",
+        label: "Water - m3/day",
         data: waterAvg?.data,
-        backgroundColor: "#2680D2",
+        backgroundColor: [
+          "#3B66FF",
+          "#647FFF",
+          "#879AFF",
+          "#A8B5FF",
+          "#C9D1FF",
+        ],
         borderColor: "black",
-        borderWidth: 2,
-        borderRadius: 3,
+        borderWidth: 1,
+        borderRadius: 5,
       },
     ],
   };
@@ -62,19 +74,25 @@ const AvgCons = () => {
     labels: elecAvg?.labels,
     datasets: [
       {
-        label: "AVG Electricity consumption kWh/day",
+        label: "Electricity - kWh/day",
         data: elecAvg?.data,
-        backgroundColor: "#C5D226",
+        backgroundColor: [
+          "#333500",
+          "#556300",
+          "#899400",
+          "#C3C800",
+          "#FFFF00",
+        ],
         borderColor: "black",
-        borderWidth: 2,
-        borderRadius: 3,
+        borderWidth: 1,
+        borderRadius: 5,
       },
     ],
   };
 
   return (
     <div className="my-4">
-      <h3>Average consumption</h3>
+      <h3 className="chartTitle">Average consumption</h3>
       {loading ? (
         <h1>Loading...</h1>
       ) : (
