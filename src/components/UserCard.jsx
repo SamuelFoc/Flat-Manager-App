@@ -8,16 +8,13 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 function UserCard(props) {
   return (
-    <div className="userCard p-3 my-2 color-light mx-3">
+    <div className="userCard p-3 my-2 mx-3">
       <div className="d-flex">
         <div to="/" className="text-center m-2 me-3">
           {props?.info?.isAdmin ? (
-            <FontAwesomeIcon
-              icon={faUserLock}
-              className="display-5 color-light"
-            />
+            <FontAwesomeIcon icon={faUserLock} className="userCardIcon" />
           ) : (
-            <FontAwesomeIcon icon={faUser} className="display-5 color-light" />
+            <FontAwesomeIcon icon={faUser} className="userCardIcon" />
           )}
         </div>
         <div>
@@ -29,12 +26,12 @@ function UserCard(props) {
         </div>
       </div>
       <div className="p-0">
-        <FontAwesomeIcon icon={faMobile} className="fs-6 me-2 color-light" />
-        <strong style={{ fontSize: ".85rem" }}>{props?.info?.contact}</strong>
+        <FontAwesomeIcon icon={faMobile} className="userCardSubIcon" />
+        <strong className="userCardText">{props?.info?.contact}</strong>
       </div>
       <div>
-        <FontAwesomeIcon icon={faEnvelope} className="fs-6 me-2 color-light" />
-        <strong style={{ fontSize: ".85rem" }}>{props?.info?.email}</strong>
+        <FontAwesomeIcon icon={faEnvelope} className="userCardSubIcon" />
+        <strong className="userCardText">{props?.info?.email}</strong>
       </div>
     </div>
   );

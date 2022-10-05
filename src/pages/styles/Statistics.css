@@ -35,7 +35,8 @@
   margin: 10px 20px;
   padding: 10px 20px;
   border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.395);
+  background-color: var(--chart-bcg-color);
+  border: var(--chart-border);
   backdrop-filter: blur(8px);
 }
 

@@ -87,7 +87,7 @@ const Services = () => {
     <div className="servicesMainSection">
       <div className="servicesMainContainer">
         <div className="text-end text-md-start">
-          <h3 className="m-2 custom-pill-box">Monthly payable services</h3>
+          <h3 className="m-2 fw-light fs-2 ps-3">Monthly payable services</h3>
         </div>
         <div className="servicesSubContainer">
           {serviceData?.length > 0 ? (
@@ -109,7 +109,7 @@ const Services = () => {
 
       <div className="servicesMainContainer">
         <div className="text-end text-md-start">
-          <h3 className="m-2 custom-pill-box">Unit prices</h3>
+          <h3 className="m-2 fw-light fs-2 ps-3">Unit prices</h3>
         </div>
         <div className="servicesSubContainer">
           {unitsData?.length > 0 ? (

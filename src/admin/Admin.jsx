@@ -45,7 +45,7 @@ const Admin = () => {
   };
 
   return (
-    <section className="adminPage container-fluid">
+    <section className="adminMainSection container-fluid">
       <div className="adminMsgBox">
         <h4 className="text-light">
           {newMsg || newError ? (
