@@ -5,7 +5,14 @@
   z-index: 2;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.87);
+  background: linear-gradient(
+    315deg,
+    rgba(0, 0, 0, 0.863) 0%,
+    rgba(164, 164, 164, 0.016) 49%,
+    rgb(0, 0, 0) 100%
+  );
+  backdrop-filter: blur(var(--glass-bcg-blur));
+  transition: 2s;
   display: flex;
   align-items: center;
   justify-content: center;

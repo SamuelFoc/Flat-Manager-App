@@ -6,19 +6,23 @@ import { faCalendarCheck } from "@fortawesome/free-solid-svg-icons";
 
 const ServiceCard = (props) => {
   return (
-    <div className="serviceCardBox">
-      <h5>{props?.info?.name}</h5>
-      <div className="d-flex align-items-center">
-        <FontAwesomeIcon icon={faMoneyBill} /> &emsp;{" "}
+    <div className="serviceCard">
+      <h5 className="serviceCardTitle">{props?.info?.name}</h5>
+      <div className="d-flex align-items-center serviceCardText">
+        <FontAwesomeIcon icon={faMoneyBill} className="serviceCardSubIcon" />{" "}
+        &emsp;{" "}
         {props?.info?.monthly_price
           ? props?.info?.monthly_price
           : props?.info?.unit_price}{" "}
         CZK {props?.info?.unit ? `/${props.info.unit}` : ""}
       </div>
       {props?.info?.pay_day ? (
-        <div className="d-flex align-items-center">
-          <FontAwesomeIcon icon={faCalendarCheck} /> &emsp; Pay by{" "}
-          {props?.info?.pay_day}
+        <div className="d-flex align-items-center serviceCardText">
+          <FontAwesomeIcon
+            icon={faCalendarCheck}
+            className="serviceCardSubIcon"
+          />{" "}
+          &emsp; Pay by {props?.info?.pay_day}
           <sup>th</sup>
         </div>
       ) : (

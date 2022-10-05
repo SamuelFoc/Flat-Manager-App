@@ -1,33 +1,53 @@
-.usersBox {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 100vw;
-  overflow: auto;
-  color: var(--text-lighter-color);
-  background-color: rgba(255, 255, 255, 0.075);
-  backdrop-filter: blur(7px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.178);
-  max-height: 65vh;
-}
-@media only screen and (max-width: 1068px) {
-  .usersBox {
-    justify-content: start;
-  }
-}
 .userCard {
-  background-color: var(--dark-color);
-  border-radius: 5px;
-  min-width: 300px;
+  background: var(--white-card-bcg);
+  border: var(--white-card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  min-width: 250px;
   max-width: fit-content;
+  animation-name: animateCard;
+  animation-duration: 8s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 .userCardText {
-  font-size: 0.85rem;
+  font-size: var(--card-fs-regular);
+  color: var(--card-fs-regular-color);
   margin: 0;
 }
 
 .userCardTitle {
-  font-size: 1rem;
+  font-size: var(--card-fs-title);
+  color: var(--card-fs-title-color);
   margin: 0;
+}
+
+.userCardIcon {
+  font-size: var(--card-fs-icon);
+  color: var(--card-icon-color);
+}
+
+.userCardSubIcon {
+  margin-right: 8px;
+  font-size: var(--card-fs-subicon);
+  color: var(--card-subicon-color);
+}
+
+@keyframes animateCard {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }

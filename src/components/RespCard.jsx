@@ -1,21 +1,22 @@
 import React from "react";
-import "./styles/RespCard.css";
+// * Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faRepeat } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import "./styles/RespCard.css";
 
 function RespCard(props) {
   const checkClass = (data) => {
     let myClass;
 
     if (data === "CRITICAL") {
-      myClass = "-critical";
+      myClass = " criticalResp";
     } else if (data === "HIGH") {
-      myClass = "-high";
+      myClass = " highResp";
     } else if (data === "LOW") {
-      myClass = "-low";
+      myClass = " lowResp";
     } else {
       myClass = "";
     }
@@ -24,9 +25,9 @@ function RespCard(props) {
   };
 
   return (
-    <div className="respCard m-1">
+    <div className="respCard">
       <div className="row">
-        <div className={"col-6 respTitle" + checkClass(props.info.urgent)}>
+        <div className={"col-6 respCardTitle" + checkClass(props.info.urgent)}>
           <h6 className="my-2">
             {props.info.title}
             <FontAwesomeIcon
@@ -42,35 +43,35 @@ function RespCard(props) {
         <div className="col-6 d-flex justify-content-end">
           {props.info.done ? (
             <button
-              className="btn btn-outline-warning"
+              className="btn-custom-edit"
               onClick={() => props.handleEdit(props.info.id, props.info.done)}
             >
-              <FontAwesomeIcon icon={faRepeat} className="fs-6" />
+              <FontAwesomeIcon icon={faRepeat} className="respCardSubIcon" />
             </button>
           ) : (
             <button
-              className="btn btn-outline-success"
+              className="btn-custom-success"
               onClick={() => props.handleEdit(props.info.id, props.info.done)}
             >
-              <FontAwesomeIcon icon={faCheck} className="fs-6" />
+              <FontAwesomeIcon icon={faCheck} className="respCardSubIcon" />
             </button>
           )}
           <button
-            type="button"
-            className="btn btn-dark"
+            className="btn-custom-delete mx-1"
             onClick={() => props.handleDelete(props.info.id)}
           >
-            <FontAwesomeIcon icon={faTrashAlt} />
+            <FontAwesomeIcon icon={faTrashAlt} className="respCardSubIcon" />
           </button>
         </div>
       </div>
       <div className="row d-flex align-items-center">
-        <div className="col-8 respDescription text-start">
+        <div className="col-7 respCardText text-start">
           {props.info.description}
         </div>
         <div
           className={
-            "col-4 text-end pe-3 pt-1 respDate" + checkClass(props.info.urgent)
+            "col-5 text-end pe-3 pt-1 respCardHighlight" +
+            checkClass(props.info.urgent)
           }
         >
           Deadline: {new Date(props.info.deadline).toLocaleDateString("cs-CZ")}

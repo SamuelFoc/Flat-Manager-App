@@ -1,4 +1,4 @@
-.adminPage {
+.adminMainSection {
   margin-top: 50px;
   max-height: 80vh;
   overflow-y: auto;
@@ -43,7 +43,7 @@ h3 {
   .adminMsgBox {
     width: 60%;
   }
-  .adminPage {
+  .adminMainSection {
     display: flex;
     flex-direction: column;
     align-items: center;

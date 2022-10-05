@@ -4,6 +4,9 @@
   display: grid;
   grid-template-columns: auto auto;
   column-gap: 2rem;
+  background-color: var(--glass-bcg-color);
+  border-radius: var(--card-radius);
+  backdrop-filter: blur(var(--glass-bcg-blur));
 }
 
 .chartContainer {
@@ -35,8 +38,40 @@
   margin: 10px 20px;
   padding: 10px 20px;
   border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.395);
-  backdrop-filter: blur(8px);
+  background-color: var(--chart-bcg-color);
+  border: var(--chart-border);
+  backdrop-filter: blur(var(--chart-bcg-blur));
+}
+
+.summary {
+  max-width: 750px;
+  position: relative;
+}
+.summaryMainButton {
+  position: absolute;
+  bottom: 50%;
+  right: calc(50% - 100px);
+  height: 50px;
+  width: 200px;
+}
+.summaryCloseButton {
+  position: absolute;
+  top: 30px;
+  right: 35px;
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.summaryCloseButton:hover {
+  background-color: red;
+  cursor: pointer;
+}
+
+.chartTitle {
+  font-size: var(--chart-fs-title);
+  font-weight: lighter;
+  padding-left: 20px;
 }
 
 .avgCons {

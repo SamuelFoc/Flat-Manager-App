@@ -2,7 +2,7 @@ function Logo() {
   return (
     <div className="ms-3">
       <svg
-        width="60"
+        width="35"
         viewBox="0 0 212 171"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

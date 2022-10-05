@@ -20,26 +20,28 @@
   background-color: var(--dark-color);
   min-width: 10rem;
   height: 10rem;
-  border-radius: 5px;
+  border-radius: var(--card-radius);
   position: relative;
+  color: var(--text-color);
   transition: 0.4s;
 }
 .userHomeItem:hover {
   transform: scale(1.03, 1.03);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.548);
+  box-shadow: var(--card-shadow);
   border-bottom: 5px solid var(--accent-color);
+  color: var(--text-color);
   cursor: pointer;
   transform: rotate3d(-1, 1, 0, 25deg);
 }
 
 .userHomeItemIcon {
-  color: var(--lighter-text-color);
+  color: var(--text-color);
 }
 
 .userHomeSubTitle {
-  color: var(--lighter-text-color);
+  color: var(--text-color);
   position: absolute;
   bottom: 0.5rem;
   left: 1rem;
-  font-size: 0.85rem;
+  font-size: var(--text-regular);
 }

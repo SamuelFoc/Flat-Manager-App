@@ -1,24 +1,19 @@
-.energyBox {
-  display: flex;
-  width: 100vw;
-  overflow: auto;
-  color: var(--text-lighter-color);
-  background-color: rgba(255, 255, 255, 0.075);
-  backdrop-filter: blur(7px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.178);
-  max-height: 65vh;
-}
-@media only screen and (max-width: 1068px) {
-  .energyBox {
-    justify-content: start;
-  }
-}
-
 .energyCard {
-  background-color: rgba(252, 252, 252, 0.055);
+  background: var(--white-card-bcg);
+  border: var(--white-card-border);
   border-radius: 10px;
   padding: 10px;
 }
+.energyCardText {
+  font-size: var(--card-fs-regular);
+  color: var(--card-fs-regular-color);
+}
+.energyCardSubIcon {
+  font-size: var(--card-fs-subicon);
+  color: var(--card-fs-regular-color);
+}
 .energyCard:hover {
-  background-color: rgba(255, 255, 255, 0.397);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(var(--glass-bcg-blur));
+  transform: scale(1.2);
 }

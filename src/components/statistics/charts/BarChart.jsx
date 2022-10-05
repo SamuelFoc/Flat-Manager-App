@@ -11,9 +11,12 @@ const BarChart = ({ chartData }) => {
         display: true,
         labels: {
           color: "white",
+          padding: 5,
+          boxHeight: 0,
+          boxWidth: 0,
           font: {
-            size: 20,
-            weight: "bold",
+            size: 18,
+            family: "Orbitron",
           },
         },
         tooltip: {
