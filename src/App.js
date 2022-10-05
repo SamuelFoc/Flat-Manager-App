@@ -27,8 +27,10 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
+
         <Route path="/" element={<Layout />}>
           <Route path="/unauthorized" element={<Unauthorized />} />
+
           <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
             <Route path="/admin" element={<Admin />} />
           </Route>
@@ -44,6 +46,7 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/events" element={<Events />} />
           </Route>
+
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>
