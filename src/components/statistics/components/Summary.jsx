@@ -1,5 +1,17 @@
 import { useEffect, useState } from "react";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//Regular
+import { faCalendar } from "@fortawesome/free-regular-svg-icons";
+//Solid
+import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
+import { faRightLong } from "@fortawesome/free-solid-svg-icons";
+import { faSun } from "@fortawesome/free-solid-svg-icons";
+import { faSquare } from "@fortawesome/free-solid-svg-icons";
+import { faMoon } from "@fortawesome/free-solid-svg-icons";
+import { faPlugCircleBolt } from "@fortawesome/free-solid-svg-icons";
+import { faHandHoldingDollar } from "@fortawesome/free-solid-svg-icons";
+import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 
 const Summary = () => {
   const [loading, setLoading] = useState(false);
@@ -23,126 +35,351 @@ const Summary = () => {
   }, [axiosPrivate]);
 
   return (
-    <div className="my-4 chartBox">
-      <h3 className="chartTitle">Summary</h3>
+    <div className="my-4 summarySubContainer">
       {false ? (
         <h6 className="fw-light">
           Data not available, please check if all unit prices are defined
           correctly.
         </h6>
       ) : (
-        <div className="row mt-4 p-3">
-          <div className="col-6">
-            <h6>Electricity</h6>
-            <div className="ps-2">
-              <strong>Date:&ensp;</strong>
-              <span>
-                From&ensp;{elec?.from}&ensp;to&ensp;{elec?.to}
-              </span>
+        <div className="mt-4">
+          <div className="row mb-5">
+            <div className="d-flex align-items-center">
+              <h6 className="summaryTitle mb-0 me-5">Electricity</h6>
+              <div
+                className="summaryTitle"
+                data-bs-toggle="tooltip"
+                data-bs-placement="right"
+                title="Measured between dates."
+              >
+                <span>
+                  <FontAwesomeIcon icon={faCalendar} className="text-neutral" />
+                  &ensp;{elec?.from}&ensp;
+                  <FontAwesomeIcon
+                    icon={faRightLong}
+                    className="text-neutral"
+                  />
+                  &ensp;{elec?.to}
+                </span>
+              </div>
             </div>
-            <div className="ps-2">
-              <strong>Days:&ensp;</strong>
-              <span>{elec?.days}</span>
+            <div className="col-6">
+              <div
+                className="p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Number of days counted in summary."
+              >
+                <FontAwesomeIcon icon={faSun} className="text-orange" />
+                <span>&ensp;{elec?.days}</span>
+              </div>
+              <div
+                className="p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Overall consumption."
+              >
+                <strong>
+                  <FontAwesomeIcon icon={faSquare} className="text-neutral" />
+                  &ensp;
+                </strong>
+                <span>
+                  {elec?.real_consumption}&ensp;{elec?.unit}
+                </span>
+              </div>
+              <div
+                className="p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Overall Inkaso."
+              >
+                <strong>
+                  <FontAwesomeIcon icon={faMoon} className="text-gray" />
+                  &ensp;
+                </strong>
+                <span>
+                  {elec?.predictedPrice}&ensp;{elec?.price_currency}
+                </span>
+              </div>
             </div>
-            <div className="ps-2">
-              <strong>Overall cons. :&ensp;</strong>
-              <span>
-                {elec?.real_consumption}&ensp;{elec?.unit}
-              </span>
-            </div>
-            <div className="ps-2">
-              <strong>Paid:&ensp;</strong>
-              <span>
-                {elec?.predictedPrice}&ensp;{elec?.price_currency}
-              </span>
-            </div>
-            <div className="ps-2">
-              <strong>Overpayments:&ensp;</strong>
-              <span>
-                {elec?.overpayments}&ensp;{elec?.price_currency}
-              </span>
-            </div>
-            <div className="ps-2">
-              <strong>Arrears:&ensp;</strong>
-              <span>
-                {elec?.arrears}&ensp;{elec?.price_currency}
-              </span>
+            <div className="col-6">
+              <div
+                className="p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Real estimated consumption."
+              >
+                <strong>
+                  <FontAwesomeIcon
+                    icon={faPlugCircleBolt}
+                    className="text-orange"
+                  />
+                  &ensp;
+                </strong>
+                <span>
+                  {elec?.real_consumption_price}&ensp;{elec?.price_currency}
+                </span>
+              </div>
+              <div
+                className="p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Overpayments."
+              >
+                <strong>
+                  <FontAwesomeIcon
+                    icon={faHandHoldingDollar}
+                    className="text-neutral"
+                  />
+                  &ensp;
+                </strong>
+                <span>
+                  {elec?.overpayments}&ensp;{elec?.price_currency}
+                </span>
+              </div>
+              <div
+                className="p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Arrears."
+              >
+                <strong>
+                  <FontAwesomeIcon
+                    icon={faCircleExclamation}
+                    className="text-red"
+                  />
+                  &ensp;
+                </strong>
+                <span>
+                  {elec?.arrears}&ensp;{elec?.price_currency}
+                </span>
+              </div>
             </div>
           </div>
-
-          <div className="col-6">
-            <h6>Electricity</h6>
-            <div className="ps-2">
-              <strong>Date:&ensp;</strong>
-              <span>
-                From&ensp;{water?.from}&ensp;to&ensp;{water?.to}
-              </span>
+          <div className="row mb-5">
+            <div className="d-flex align-items-center">
+              <h6 className="summaryTitle mb-0 me-5">Water</h6>
+              <div
+                className="summaryTitle"
+                data-bs-toggle="tooltip"
+                data-bs-placement="right"
+                title="Measured between dates."
+              >
+                <span>
+                  <FontAwesomeIcon icon={faCalendar} className="text-neutral" />
+                  &ensp;{water?.from}&ensp;
+                  <FontAwesomeIcon
+                    icon={faRightLong}
+                    className="text-neutral"
+                  />
+                  &ensp;{water?.to}
+                </span>
+              </div>
             </div>
-            <div className="ps-2">
-              <strong>Days:&ensp;</strong>
-              <span>{water?.days}</span>
+            <div className="col-6">
+              <div
+                className="p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Number of days counted in summary."
+              >
+                <FontAwesomeIcon icon={faSun} className="text-orange" />
+                <span>&ensp;{water?.days}</span>
+              </div>
+              <div
+                className="p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Overall consumption."
+              >
+                <strong>
+                  <FontAwesomeIcon icon={faSquare} className="text-neutral" />
+                  &ensp;
+                </strong>
+                <span>
+                  {water?.real_consumption}&ensp;{water?.unit}
+                </span>
+              </div>
+              <div
+                className="p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Overall Inkaso."
+              >
+                <strong>
+                  <FontAwesomeIcon icon={faMoon} className="text-gray" />
+                  &ensp;
+                </strong>
+                <span>
+                  {water?.predictedPrice}&ensp;{water?.price_currency}
+                </span>
+              </div>
             </div>
-            <div className="ps-2">
-              <strong>Overall cons. :&ensp;</strong>
-              <span>
-                {water?.real_consumption}&ensp;{water?.unit}
-              </span>
-            </div>
-            <div className="ps-2">
-              <strong>Paid:&ensp;</strong>
-              <span>
-                {water?.predictedPrice}&ensp;{water?.price_currency}
-              </span>
-            </div>
-            <div className="ps-2">
-              <strong>Overpayments:&ensp;</strong>
-              <span>
-                {water?.overpayments}&ensp;{water?.price_currency}
-              </span>
-            </div>
-            <div className="ps-2">
-              <strong>Arrears:&ensp;</strong>
-              <span>
-                {water?.arrears}&ensp;{water?.price_currency}
-              </span>
+            <div className="col-6">
+              <div
+                className="p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Real estimated consumption."
+              >
+                <strong>
+                  <FontAwesomeIcon
+                    icon={faPlugCircleBolt}
+                    className="text-orange"
+                  />
+                  &ensp;
+                </strong>
+                <span>
+                  {water?.real_consumption_price}&ensp;{water?.price_currency}
+                </span>
+              </div>
+              <div
+                className="p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Overpayments."
+              >
+                <strong>
+                  <FontAwesomeIcon
+                    icon={faHandHoldingDollar}
+                    className="text-neutral"
+                  />
+                  &ensp;
+                </strong>
+                <span>
+                  {water?.overpayments}&ensp;{water?.price_currency}
+                </span>
+              </div>
+              <div
+                className="p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Arrears."
+              >
+                <strong>
+                  <FontAwesomeIcon
+                    icon={faCircleExclamation}
+                    className="text-red"
+                  />
+                  &ensp;
+                </strong>
+                <span>
+                  {water?.arrears}&ensp;{water?.price_currency}
+                </span>
+              </div>
             </div>
           </div>
-
-          <div className="col-6 mt-4">
-            <h6>Gas</h6>
-            <div className="ps-2">
-              <strong>Date:&ensp;</strong>
-              <span>
-                From&ensp;{gas?.from}&ensp;to&ensp;{gas?.to}
-              </span>
+          <div className="row">
+            <div className="d-flex align-items-center">
+              <h6 className="summaryTitle mb-0 me-5">Gas</h6>
+              <div
+                className="summaryTitle"
+                data-bs-toggle="tooltip"
+                data-bs-placement="right"
+                title="Measured between dates."
+              >
+                <span>
+                  <FontAwesomeIcon icon={faCalendar} className="text-neutral" />
+                  &ensp;{gas?.from}&ensp;
+                  <FontAwesomeIcon
+                    icon={faRightLong}
+                    className="text-neutral"
+                  />
+                  &ensp;{gas?.to}
+                </span>
+              </div>
             </div>
-            <div className="ps-2">
-              <strong>Days:&ensp;</strong>
-              <span>{gas?.days}</span>
+            <div className="col-6">
+              <div
+                className="p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Number of days counted in summary."
+              >
+                <FontAwesomeIcon icon={faSun} className="text-orange" />
+                <span>&ensp;{gas?.days}</span>
+              </div>
+              <div
+                className="p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Overall consumption."
+              >
+                <strong>
+                  <FontAwesomeIcon icon={faSquare} className="text-neutral" />
+                  &ensp;
+                </strong>
+                <span>
+                  {gas?.real_consumption}&ensp;{gas?.unit}
+                </span>
+              </div>
+              <div
+                className="p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Overall Inkaso."
+              >
+                <strong>
+                  <FontAwesomeIcon icon={faMoon} className="text-gray" />
+                  &ensp;
+                </strong>
+                <span>
+                  {gas?.predictedPrice}&ensp;{gas?.price_currency}
+                </span>
+              </div>
             </div>
-            <div className="ps-2">
-              <strong>Overall cons. :&ensp;</strong>
-              <span>
-                {gas?.real_consumption}&ensp;{gas?.unit}
-              </span>
-            </div>
-            <div className="ps-2">
-              <strong>Paid:&ensp;</strong>
-              <span>
-                {gas?.predictedPrice}&ensp;{gas?.price_currency}
-              </span>
-            </div>
-            <div className="ps-2">
-              <strong>Overpayments:&ensp;</strong>
-              <span>
-                {gas?.overpayments}&ensp;{gas?.price_currency}
-              </span>
-            </div>
-            <div className="ps-2">
-              <strong>Arrears:&ensp;</strong>
-              <span>
-                {gas?.arrears}&ensp;{gas?.price_currency}
-              </span>
+            <div className="col-6">
+              <div
+                className="p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Real estimated consumption."
+              >
+                <strong>
+                  <FontAwesomeIcon
+                    icon={faPlugCircleBolt}
+                    className="text-orange"
+                  />
+                  &ensp;
+                </strong>
+                <span>
+                  {gas?.real_consumption_price}&ensp;{gas?.price_currency}
+                </span>
+              </div>
+              <div
+                className="p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Overpayments."
+              >
+                <strong>
+                  <FontAwesomeIcon
+                    icon={faHandHoldingDollar}
+                    className="text-neutral"
+                  />
+                  &ensp;
+                </strong>
+                <span>
+                  {gas?.overpayments}&ensp;{gas?.price_currency}
+                </span>
+              </div>
+              <div
+                className="p-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Arrears."
+              >
+                <strong>
+                  <FontAwesomeIcon
+                    icon={faCircleExclamation}
+                    className="text-red"
+                  />
+                  &ensp;
+                </strong>
+                <span>
+                  {gas?.arrears}&ensp;{gas?.price_currency}
+                </span>
+              </div>
             </div>
           </div>
         </div>

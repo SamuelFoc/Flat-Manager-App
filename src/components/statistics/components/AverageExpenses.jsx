@@ -69,7 +69,7 @@ const AvgExps = () => {
       },
     ],
   };
-  console.log(elecAvgExps);
+
   return (
     <div className="my-4">
       <h3 className="chartTitle">Average expenses</h3>

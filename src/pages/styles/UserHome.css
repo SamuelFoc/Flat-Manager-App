@@ -17,12 +17,13 @@
 }
 
 .userHomeItem {
-  background-color: var(--dark-color);
+  background: var(--white-card-bcg);
+  border: var(--white-card-border);
   min-width: 10rem;
   height: 10rem;
   border-radius: var(--card-radius);
   position: relative;
-  color: var(--text-color);
+  color: var(--card-fs-regular-color);
   transition: 0.4s;
 }
 .userHomeItem:hover {
