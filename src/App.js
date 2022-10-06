@@ -28,7 +28,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
 
-        <Route path="/" element={<Layout />}>
+        <Route path="" element={<Layout />}>
           <Route path="/unauthorized" element={<Unauthorized />} />
 
           <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
@@ -37,7 +37,7 @@ function App() {
           <Route
             element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} />}
           >
-            <Route path="/home" element={<UserHome />} />
+            <Route path="/" element={<UserHome />} />
             <Route path="/users" element={<Users />} />
             <Route path="/shoppingList" element={<ShoppingList />} />
             <Route path="/responsibilities" element={<Responsibilities />} />
