@@ -61,15 +61,15 @@ const AvgExps = () => {
 
   const elecConst = createConstArray(
     elecAvgExps?.data?.length,
-    services?.electricity[0].monthly_price / 30
+    services?.electricity[0]?.monthly_price / 30
   );
   const watConst = createConstArray(
     watAvgExps?.data?.length,
-    services?.water[0].monthly_price / 30
+    services?.water[0]?.monthly_price / 30
   );
   const gasConst = createConstArray(
     gasAvgExps?.data?.length,
-    services?.gas[0].monthly_price / 30
+    services?.gas[0]?.monthly_price / 30
   );
 
   const gasDataAvgExps = {
