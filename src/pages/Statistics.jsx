@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import FileDownload from "js-file-download";
 import AverageExpenses from "../components/statistics/components/AverageExpenses";
 import AverageConsumption from "../components/statistics/components/AverageConsumption";
 import Predictions from "../components/statistics/components/Predictions";
@@ -10,7 +11,9 @@ import "./styles/Statistics.css";
 
 const Statistics = () => {
   const [summaryHidden, setSummaryHidden] = useState(true);
-  const [reportType, setReportType] = useState();
+  const [report, setReport] = useState();
+  const [newError, setNewError] = useState(false);
+  const [newMsg, setNewMsg] = useState(false);
   const axiosPrivate = useAxiosPrivate();
 
   const showSummary = () => {
@@ -18,12 +21,57 @@ const Statistics = () => {
   };
 
   const handleChange = (event) => {
-    setReportType(event.target.value);
+    setNewMsg(false);
+    setReport((prevFormData) => {
+      return {
+        ...prevFormData,
+        [event.target.name]: event.target.value,
+      };
+    });
   };
 
-  const handleSubmit = async (e) => {
+  var data = JSON.stringify(report);
+
+  const generateReport = (e) => {
     e.preventDefault();
-    axiosPrivate.get(`/statistics/report/${reportType}`);
+    var config = {
+      url: "/statistics/generateReport",
+      method: "post",
+      data: data,
+    };
+    setNewMsg(false);
+    setNewError(false);
+    axiosPrivate(config)
+      .then(() => {
+        setNewMsg("Download Report");
+        setNewError(false);
+      })
+      .catch((err) => {
+        setNewError(err.message);
+        setNewMsg(false);
+      });
+  };
+
+  const downloadReport = (e) => {
+    e.preventDefault();
+    setNewMsg("Downloading..");
+    setNewError(false);
+
+    var config = {
+      url: `/statistics/downloadReport/${report.type}`,
+      method: "get",
+      responseType: "blob",
+    };
+    axiosPrivate(config)
+      .then((res) => {
+        FileDownload(res.data, `${report.type}_report.pdf`);
+        setNewMsg("Download Again?");
+        setNewError(false);
+      })
+      .catch((err) => {
+        setNewError(err.message);
+        setNewMsg(false);
+      });
   };
 
   return (
@@ -63,8 +111,8 @@ const Statistics = () => {
         </div>
       </div>
 
-      <div className="reportsContainer">
-        <button className="btn btn-outline-warning" onClick={handleSubmit}>
+      <div className="reportsMainContainer mt-5">
+        <button className="btn btn-outline-warning" onClick={generateReport}>
           Generate report
         </button>
         <select
@@ -77,6 +125,43 @@ const Statistics = () => {
           <option value="Water">Water</option>
           <option value="Gas">Gas</option>
         </select>
+        <label htmlFor="from" className="text-white">
+          From
+        </label>
+        <input
+          type="date"
+          className="form-control"
+          name="from"
+          onChange={handleChange}
+          id="from"
+        />
+        <label htmlFor="to" className="text-white">
+          To
+        </label>
+        <input
+          type="date"
+          className="form-control"
+          name="to"
+          onChange={handleChange}
+          id="to"
+        />
+        <div className="mt-3">
+          <h4 className="text-light">{newMsg || newError ? "" : ""}</h4>
+          <div
+            className={
+              newError ? "alert alert-danger" : "alert alert-danger collapse"
+            }
+            role="alert"
+          >
+            {newError}
+          </div>
+          <button
+            className={newMsg ? "btn btn-success" : "collapse"}
+            onClick={downloadReport}
+          >
+            {newMsg}
+          </button>
+        </div>
       </div>
     </div>
   );

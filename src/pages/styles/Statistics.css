@@ -54,6 +54,17 @@
   backdrop-filter: blur(var(--chart-bcg-blur));
 }
 
+.reportsMainContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 60px;
+  margin-bottom: 100px;
+  background-color: var(--glass-bcg-color);
+  border-radius: var(--card-radius);
+  backdrop-filter: blur(var(--glass-bcg-blur));
+}
+
 .summaryMainContainer {
   display: flex;
   align-items: center;
