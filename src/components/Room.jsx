@@ -16,7 +16,7 @@ const Room = (props) => {
       setRoom(result.data);
     };
     getRoom();
-  }, []);
+  }, [axiosPrivate, props.name]);
 
   return (
     <div>

@@ -32,7 +32,7 @@ const Rooms = () => {
       setRooms(result.data.data);
     };
     getRooms();
-  }, []);
+  }, [axiosPrivate]);
 
   return (
     <section className="roomsMainSection">
