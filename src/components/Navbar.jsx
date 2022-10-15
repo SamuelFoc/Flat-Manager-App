@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import Logo from "./Logo";
 import "./styles/Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faCouch, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faBriefcase } from "@fortawesome/free-solid-svg-icons";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
@@ -29,6 +29,9 @@ function Navbar() {
           </NavLink>
           <NavLink to="/users">
             <FontAwesomeIcon icon={faUsers} className="nav-item mx-3" />
+          </NavLink>
+          <NavLink to="/rooms">
+            <FontAwesomeIcon icon={faCouch} className="nav-item mx-3" />
           </NavLink>
           <NavLink to="/shoppingList">
             <FontAwesomeIcon icon={faCartShopping} className="nav-item mx-3" />
@@ -67,6 +70,9 @@ function Navbar() {
           <NavLink to="/users">
             <FontAwesomeIcon icon={faUsers} className="nav-item my-3" />
           </NavLink>
+          <NavLink to="/rooms">
+            <FontAwesomeIcon icon={faCouch} className="nav-item mx-3" />
+          </NavLink>
           <NavLink to="/shoppingList">
             <FontAwesomeIcon icon={faCartShopping} className="nav-item my-3" />
           </NavLink>
@@ -83,12 +89,12 @@ function Navbar() {
             />
           </NavLink>
           <NavLink to="/statistics">
-            <FontAwesomeIcon icon={faChartBar} className="nav-item mx-3" />
+            <FontAwesomeIcon icon={faChartBar} className="nav-item my-3" />
           </NavLink>
           <NavLink to="/services">
             <FontAwesomeIcon
               icon={faBellConcierge}
-              className="nav-item  mx-3 ring"
+              className="nav-item  my-3 ring"
             />
           </NavLink>
           <NavLink to="/logout">

@@ -14,6 +14,7 @@ import Logout from "./pages/Logout";
 import Services from "./pages/Services";
 import Events from "./pages/Events";
 import Statistics from "./pages/Statistics";
+import Rooms from "./pages/Rooms";
 
 const ROLES = {
   User: "User",
@@ -39,6 +40,7 @@ function App() {
           >
             <Route path="/" element={<UserHome />} />
             <Route path="/users" element={<Users />} />
+            <Route path="/rooms" element={<Rooms />} />
             <Route path="/shoppingList" element={<ShoppingList />} />
             <Route path="/responsibilities" element={<Responsibilities />} />
             <Route path="/energies" element={<Energies />} />

@@ -1,0 +1,23 @@
+.room {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(37, 36, 35, 0.608);
+  border: 1px solid rgba(146, 130, 130, 0.262);
+  border-radius: var(--card-radius);
+  transition: 0.3s;
+  color: var(--card-icon-color);
+  box-shadow: var(--card-shadow);
+  user-select: none;
+}
+.room > * {
+  color: var(--card-title-color);
+}
+.room:hover {
+  transform: translateY(-10px);
+  cursor: pointer;
+  background-color: rgba(92, 92, 92, 0.461);
+}
