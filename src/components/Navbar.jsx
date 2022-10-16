@@ -18,7 +18,7 @@ function Navbar() {
       <nav>
         <div className="d-flex align-items-center">
           <Logo className="m-5" />
-          <NavLink to="/" className="navbarTitle ms-3 my-2">
+          <NavLink to="/" className="navbarTitle ms-3">
             Flat Manager
           </NavLink>
         </div>

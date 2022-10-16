@@ -21,3 +21,14 @@
   cursor: pointer;
   background-color: rgba(92, 92, 92, 0.461);
 }
+
+.openedRoom {
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid rgba(146, 144, 144, 0.451);
+  background-color: rgba(0, 0, 0, 0.547);
+}
+.qrcodeImg {
+  background-color: rgba(255, 255, 255, 0.863);
+  margin: 25px 0;
+}

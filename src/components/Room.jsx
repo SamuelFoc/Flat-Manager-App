@@ -16,16 +16,16 @@ const Room = (props) => {
       setRoom(result.data);
     };
     getRoom();
-  }, [axiosPrivate, props.name]);
+  }, [axiosPrivate, props.name, props.msg]);
 
   return (
-    <div>
+    <div className="d-flex justify-content-center">
       {props.opened ? (
         <div className="openedRoom">
           <h4>Room {props.name}</h4>
           <div className="openedRoomConatainer">
             <div>
-              <strong>Num. of accomodated:&ensp;</strong>
+              <strong>People:&ensp;</strong>
               <span>{room?.livings}</span>
             </div>
             <div>
@@ -39,11 +39,9 @@ const Room = (props) => {
             </div>
             <div>
               <strong>Last paid:&ensp;</strong>
-              <span>Date</span>
-            </div>
-            <div>
-              <strong>Nearest pay date:&ensp;</strong>
-              <span>Date</span>
+              <span>
+                {new Date(room?.paid_on)?.toLocaleDateString("cs-CZ")}
+              </span>
             </div>
             <div>
               <strong>Rent:&ensp;</strong>
@@ -51,6 +49,7 @@ const Room = (props) => {
             </div>
             <div>
               <img
+                className="qrcodeImg"
                 src="//upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/220px-QR_code_for_mobile_English_Wikipedia.svg.png"
                 alt=""
               />
@@ -62,7 +61,12 @@ const Room = (props) => {
           >
             Close Room
           </button>
-          <button className="ms-4 btn btn-outline-success">Paid</button>
+          <button
+            className="ms-4 btn btn-outline-success"
+            onClick={() => props.pay(props.name)}
+          >
+            Pay
+          </button>
         </div>
       ) : (
         <div

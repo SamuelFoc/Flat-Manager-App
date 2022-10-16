@@ -46,7 +46,7 @@ aside ul {
 
 .navbarTitle {
   font-size: var(--nav-fs-title);
-  min-width: fit-content;
+  min-width: 220px;
   text-decoration: none;
   color: var(--text-color);
   font-family: var(--nav-f-family);
