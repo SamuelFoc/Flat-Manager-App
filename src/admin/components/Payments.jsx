@@ -1,30 +1,30 @@
 import { useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import User from "./AdminUserCard";
+import Payment from "./AdminPaymentCard";
 import HiddenForm from "../../components/HiddenForm";
 
-const Users = (props) => {
+const Payments = (props) => {
   const [formData, setFormData] = useState();
-  const [showUsers, setShowUsers] = useState(false);
+  const [showPayments, setShowPayments] = useState(false);
   const axiosPrivate = useAxiosPrivate();
-  const [username, setUsername] = useState("");
+  const [paymentName, setPaymentName] = useState("");
 
   // TODO: User Editing
   const [isEditForm, setIsEditForm] = useState(false);
   const showEditForm = (username) => {
     setIsEditForm((prevState) => !prevState);
-    setUsername(username);
+    setPaymentName(username);
     setFormData({});
   };
 
-  const showCreateForm = (username) => {
+  const showCreateForm = () => {
     setIsEditForm((prevState) => !prevState);
-    setUsername(false);
+    setPaymentName(false);
     setFormData({});
   };
 
   const setVisibility = () => {
-    setShowUsers((prevState) => !prevState);
+    setShowPayments((prevState) => !prevState);
   };
 
   const handleChange = (event) => {
@@ -39,40 +39,32 @@ const Users = (props) => {
   const formConfig = {
     type: "small",
     submit: {
-      url: username ? `/admin/user/${username}` : "admin/register",
-      method: username ? "put" : "post",
+      url: paymentName ? `/admin/payment/${paymentName}` : "admin/payment",
+      method: paymentName ? "put" : "post",
       data: formData,
     },
-    inputs: [
-      { name: "user" },
-      { name: "email" },
-      { name: "pwd", type: "password" },
-      { name: "age", type: "number", min: 0, max: 120 },
-      { name: "work" },
-      { name: "contact", type: "number" },
-      { name: "room" },
-    ],
-    checks: [{ name: "isAdmin" }],
-    submitName: username ? "EDIT" : "CREATE",
+    inputs: [{ name: "name" }, { name: "iban" }, { name: "currency" }],
+    checks: [{ name: "isDefault" }],
+    submitName: paymentName ? "EDIT" : "CREATE",
   };
 
   // TODO: DELETE USER
-  const deleteUser = (username) => {
+  const deletePayment = (paymentName) => {
     axiosPrivate
-      .delete(`/admin/user/${username}`)
+      .delete(`/admin/payment/${paymentName}`)
       .then(() => {
-        props.showMsg(`User ${username} deleted succesfully.`);
+        props.showMsg(`Payment ${paymentName} deleted succesfully.`);
       })
       .catch((err) => {
-        props.addError(`Error occurred while deleting ${username}.`);
+        props.addError(`Error occurred while deleting ${paymentName}.`);
       });
   };
 
   return (
     <div className="w-100">
       <div className="d-flex align-items-center justify-content-between">
-        <h3>Users</h3>
-        {!showUsers ? (
+        <h3>Payments</h3>
+        {!showPayments ? (
           <button
             className="btn btn-outline-warning my-2"
             onClick={setVisibility}
@@ -88,7 +80,7 @@ const Users = (props) => {
           </button>
         )}
       </div>
-      <div className={showUsers ? "formBox" : "formBox hidden"}>
+      <div className={showPayments ? "formBox" : "formBox hidden"}>
         {isEditForm && (
           <HiddenForm
             formInfo={formConfig}
@@ -99,27 +91,27 @@ const Users = (props) => {
           />
         )}
         <div className="text-light my-4">
-          {props?.users?.length > 0 ? (
-            props?.users?.map((user) => (
-              <User
-                info={user}
-                handleDelete={deleteUser}
+          {props?.payments?.length > 0 ? (
+            props?.payments?.map((payment) => (
+              <Payment
+                info={payment}
+                handleDelete={deletePayment}
                 showForm={showEditForm}
               />
             ))
           ) : (
-            <h6 className=" m-2 text-light">There are no users in DB..</h6>
+            <h6 className=" m-2 text-light">There are no payments in DB..</h6>
           )}
         </div>
         <button
           className="btn btn-outline-success my-2"
           onClick={showCreateForm}
         >
-          Add User
+          Add Payment Account
         </button>
       </div>
     </div>
   );
 };
 
-export default Users;
+export default Payments;

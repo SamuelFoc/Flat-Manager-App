@@ -1,30 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import User from "./AdminUserCard";
+import Room from "./AdminRoomCard";
 import HiddenForm from "../../components/HiddenForm";
 
-const Users = (props) => {
+const Rooms = (props) => {
   const [formData, setFormData] = useState();
-  const [showUsers, setShowUsers] = useState(false);
+  const [showRooms, setShowRooms] = useState(false);
+  const [user, setUser] = useState("");
   const axiosPrivate = useAxiosPrivate();
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
 
   // TODO: User Editing
   const [isEditForm, setIsEditForm] = useState(false);
-  const showEditForm = (username) => {
+  const showEditForm = (name) => {
     setIsEditForm((prevState) => !prevState);
-    setUsername(username);
+    setName(name);
     setFormData({});
   };
 
-  const showCreateForm = (username) => {
+  const showCreateForm = (name) => {
     setIsEditForm((prevState) => !prevState);
-    setUsername(false);
+    setName(false);
     setFormData({});
   };
 
   const setVisibility = () => {
-    setShowUsers((prevState) => !prevState);
+    setShowRooms((prevState) => !prevState);
   };
 
   const handleChange = (event) => {
@@ -36,32 +37,38 @@ const Users = (props) => {
     });
   };
 
+  useEffect(() => {
+    const getData = async () => {
+      await axiosPrivate.get("/admin/users").then((users) => {
+        let userArray = [];
+        for (const user of users.data.data) {
+          userArray.push(user.username);
+        }
+        setUser(userArray);
+      });
+    };
+
+    getData();
+  }, [axiosPrivate]);
+
   const formConfig = {
     type: "small",
     submit: {
-      url: username ? `/admin/user/${username}` : "admin/register",
-      method: username ? "put" : "post",
+      url: name ? `/admin/room/${name}` : "admin/room",
+      method: name ? "put" : "post",
       data: formData,
     },
-    inputs: [
-      { name: "user" },
-      { name: "email" },
-      { name: "pwd", type: "password" },
-      { name: "age", type: "number", min: 0, max: 120 },
-      { name: "work" },
-      { name: "contact", type: "number" },
-      { name: "room" },
-    ],
-    checks: [{ name: "isAdmin" }],
-    submitName: username ? "EDIT" : "CREATE",
+    inputs: [{ name: "name" }],
+    selections: [{ name: "users", options: user }],
+    submitName: name ? "EDIT" : "CREATE",
   };
 
   // TODO: DELETE USER
-  const deleteUser = (username) => {
+  const deleteRoom = (username) => {
     axiosPrivate
-      .delete(`/admin/user/${username}`)
+      .delete(`/admin/room/${username}`)
       .then(() => {
-        props.showMsg(`User ${username} deleted succesfully.`);
+        props.showMsg(`Room ${username} deleted succesfully.`);
       })
       .catch((err) => {
         props.addError(`Error occurred while deleting ${username}.`);
@@ -71,8 +78,8 @@ const Users = (props) => {
   return (
     <div className="w-100">
       <div className="d-flex align-items-center justify-content-between">
-        <h3>Users</h3>
-        {!showUsers ? (
+        <h3>Rooms</h3>
+        {!showRooms ? (
           <button
             className="btn btn-outline-warning my-2"
             onClick={setVisibility}
@@ -88,7 +95,7 @@ const Users = (props) => {
           </button>
         )}
       </div>
-      <div className={showUsers ? "formBox" : "formBox hidden"}>
+      <div className={showRooms ? "formBox" : "formBox hidden"}>
         {isEditForm && (
           <HiddenForm
             formInfo={formConfig}
@@ -99,11 +106,12 @@ const Users = (props) => {
           />
         )}
         <div className="text-light my-4">
-          {props?.users?.length > 0 ? (
-            props?.users?.map((user) => (
-              <User
-                info={user}
-                handleDelete={deleteUser}
+          {props?.rooms?.length > 0 ? (
+            props?.rooms?.map((room, i) => (
+              <Room
+                key={i}
+                info={room}
+                handleDelete={deleteRoom}
                 showForm={showEditForm}
               />
             ))
@@ -115,11 +123,11 @@ const Users = (props) => {
           className="btn btn-outline-success my-2"
           onClick={showCreateForm}
         >
-          Add User
+          Add Room
         </button>
       </div>
     </div>
   );
 };
 
-export default Users;
+export default Rooms;
