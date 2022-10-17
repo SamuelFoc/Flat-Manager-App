@@ -1,28 +1,41 @@
 import Room from "../components/Room";
 import React from "react";
 import "./styles/Rooms.css";
+import useAuth from "../hooks/useAuth";
 import { useState } from "react";
 import { useEffect } from "react";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 const Rooms = () => {
+  const { auth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
   const [openedRooms, setOpenedRooms] = useState([]);
   const [rooms, setRooms] = useState();
   const [msg, setMsg] = useState({ status: true, message: "Payment summary" });
 
-  const openRoom = (room) => {
+  const openRoom = (room, living_names) => {
+    const isAuthorized = living_names.includes(auth.user);
     const isAlreadyOpen = openedRooms?.includes(room);
-    if (isAlreadyOpen) {
-      setOpenedRooms((prevState) => {
-        let newState = [...prevState];
-        return newState.filter((item) => item !== room);
-      });
+
+    if (isAuthorized) {
+      if (isAlreadyOpen) {
+        setOpenedRooms((prevState) => {
+          let newState = [...prevState];
+          return newState.filter((item) => item !== room);
+        });
+        setMsg({ status: true, message: `Room ${room} closed.` });
+      } else {
+        setOpenedRooms((prevState) => {
+          let newState = [...prevState];
+          newState.push(room);
+          return newState;
+        });
+        setMsg({ status: true, message: `Room ${room} opened.` });
+      }
     } else {
-      setOpenedRooms((prevState) => {
-        let newState = [...prevState];
-        newState.push(room);
-        return newState;
+      setMsg({
+        status: false,
+        message: `You don't have access to ${room}'s room.`,
       });
     }
   };

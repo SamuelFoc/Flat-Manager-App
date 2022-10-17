@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import Users from "./components/Users";
 import Energies from "./components/Energies";
 import Units from "./components/Units";
+import Rooms from "./components/Rooms";
+import Payments from "./components/Payments";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
@@ -17,9 +19,14 @@ const Admin = () => {
   const [service, setService] = useState("");
   const [unit, setUnit] = useState("");
   const [user, setUser] = useState("");
+  const [room, setRoom] = useState("");
+  const [payment, setPayment] = useState("");
 
   useEffect(() => {
     const getData = async () => {
+      await axiosPrivate.get("/admin/payments").then((payments) => {
+        setPayment(payments.data.data);
+      });
       await axiosPrivate.get("/admin/energies").then((energies) => {
         setEnergy(energies.data.data);
       });
@@ -28,6 +35,9 @@ const Admin = () => {
       });
       await axiosPrivate.get("/admin/users").then((users) => {
         setUser(users.data.data);
+      });
+      await axiosPrivate.get("/admin/rooms").then((rooms) => {
+        setRoom(rooms.data.data);
       });
       await axiosPrivate.get("/admin/units").then((units) => {
         setUnit(units.data.data);
@@ -82,7 +92,17 @@ const Admin = () => {
         </div>
       </div>
       <div className="adminBox">
+        <Payments
+          payments={payment}
+          showMsg={setNewMsg}
+          addError={setNewError}
+        />
+      </div>
+      <div className="adminBox">
         <Users users={user} showMsg={setNewMsg} addError={setNewError} />
+      </div>
+      <div className="adminBox">
+        <Rooms rooms={room} showMsg={setNewMsg} addError={setNewError} />
       </div>
       <div className="adminBox">
         <Services
