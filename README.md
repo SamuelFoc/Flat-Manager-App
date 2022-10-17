@@ -34,7 +34,7 @@ The most basic function you can find in FlatManager is user review on page <span
 
 Another daily used function is <span style="font-weight: bold; color: #E77A00">Shopping List</span>. Here you can add (easily by clicking on + button) anything what you need at the moment and this information will be automaticly shared with all accommodated users by email notification, so they can help you with your needs.
 
-![Shoping List](./Screens/shopingList.png "Shoping List - FlatManager")
+![Shoping List](./Screens/shopinglist.png "Shoping List - FlatManager")
 
 From time to time something needs to be done at the appartment, using <span style="font-weight: bold; color: #E77A00">List of Responsibilities</span> you and your roommates can easily divide individual responsibilities and their deadlines so you all don't have to keep it in mind.
 
