@@ -26,7 +26,7 @@ const Room = (props) => {
       const paymentData = await (await axiosPrivate("/payments/")).data.data[0];
       const qrText = `SPD*1.0*ACC:${paymentData?.iban?.replace(/\s/g, "")}*AM:${
         room?.cost
-      }*CC:${paymentData.currency}*MSG:Rent from ${props?.name}.`;
+      }*CC:${paymentData?.currency}*MSG:Rent from ${props?.name}.`;
       QRCode.toDataURL(qrText).then(setSrc);
     };
     getPayment();

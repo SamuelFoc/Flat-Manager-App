@@ -43,7 +43,7 @@ const Rooms = () => {
   const pay = (room) => {
     var config = {
       method: "put",
-      url: `/rooms/${room}`,
+      url: `/admin/room/${room}`,
       data: JSON.stringify({ paidOn: new Date() }),
     };
     axiosPrivate(config)
