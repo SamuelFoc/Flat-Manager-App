@@ -5,7 +5,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
-const UserCard = (props) => {
+const PaymentCard = (props) => {
   return (
     <div className="adminServiceCard medium-text m-1">
       <div className="row align-items-center">
@@ -44,4 +44,4 @@ const UserCard = (props) => {
   );
 };
 
-export default UserCard;
+export default PaymentCard;

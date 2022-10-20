@@ -24,7 +24,7 @@ const Admin = () => {
 
   useEffect(() => {
     const getData = async () => {
-      await axiosPrivate.get("/admin/payments").then((payments) => {
+      await axiosPrivate.get("/admin/paymentAccounts").then((payments) => {
         setPayment(payments.data.data);
       });
       await axiosPrivate.get("/admin/energies").then((energies) => {
