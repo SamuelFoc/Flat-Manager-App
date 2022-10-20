@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCouch, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faBriefcase } from "@fortawesome/free-solid-svg-icons";
-import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+import { faMoneyBillWave } from "@fortawesome/free-solid-svg-icons";
 import { faFireFlameSimple } from "@fortawesome/free-solid-svg-icons";
 import { faBellConcierge } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
@@ -39,8 +39,8 @@ function Navbar() {
           <NavLink to="/responsibilities">
             <FontAwesomeIcon icon={faBriefcase} className="nav-item mx-3" />
           </NavLink>
-          <NavLink to="/events">
-            <FontAwesomeIcon icon={faCalendarDays} className="nav-item mx-3" />
+          <NavLink to="/mypayments">
+            <FontAwesomeIcon icon={faMoneyBillWave} className="nav-item mx-3" />
           </NavLink>
           <NavLink to="/energies">
             <FontAwesomeIcon
@@ -79,8 +79,8 @@ function Navbar() {
           <NavLink to="/responsibilities">
             <FontAwesomeIcon icon={faBriefcase} className="nav-item my-3" />
           </NavLink>
-          <NavLink to="/events">
-            <FontAwesomeIcon icon={faCalendarDays} className="nav-item my-3" />
+          <NavLink to="/mypayments">
+            <FontAwesomeIcon icon={faMoneyBillWave} className="nav-item mx-3" />
           </NavLink>
           <NavLink to="/energies">
             <FontAwesomeIcon
