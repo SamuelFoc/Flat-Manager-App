@@ -121,7 +121,7 @@ function HiddenForm(props) {
           );
         })}
 
-        <div>
+        <div className="hiddenFormButtons">
           <button
             className="btn btn-primary m-4 px-4"
             type="submit"

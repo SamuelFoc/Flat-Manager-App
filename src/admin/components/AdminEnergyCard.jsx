@@ -9,30 +9,30 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 export default function EnergyCard(props) {
   return (
     <div className="adminEnergyCard medium-text m-1">
-      <div className="row align-items-center">
-        <div className="col-4">
+      <div className="row align-items-center text-center">
+        <div className="phoneCardText col-12 col-md-3">
           <span className="my-2">
             <FontAwesomeIcon icon={faCalendarPlus} />
             &emsp;
             {new Date(props.info.measured_at).toLocaleDateString("en-GB")}
           </span>
         </div>
-        <div className="col-2 d-flex align-items-center">{props.info.type}</div>
-        <div className="col-6 align-items-center d-flex justify-content-end">
+        <div className="phoneCardText col-12 col-md-2 ">{props.info.type}</div>
+        <div className="phoneCardText col-12 col-md-3">
           <FontAwesomeIcon icon={faRuler} />
-          <span className="d-flex align-items-center">
-            &emsp;{props.info.measured_value}&ensp;
-            {props.type === "water" || props.type === "gas" ? (
-              <p className="m-0">
-                m<sup>3</sup>
-              </p>
-            ) : (
-              "kWh"
-            )}
-          </span>
+          &emsp;{props.info.measured_value}&ensp;
+          {props.type === "water" || props.type === "gas" ? (
+            <span className="m-0">
+              m<sup>3</sup>
+            </span>
+          ) : (
+            "kWh"
+          )}
+        </div>
+        <div className="phoneCardText col-12 col-md-4 align-items-center d-flex justify-content-md-end justify-content-center">
           <button
             type="button"
-            className="btn btn-outline-warning ms-4"
+            className="btn btn-outline-warning ms-md-4"
             onClick={() => props.showForm(props?.info?.id)}
           >
             <FontAwesomeIcon icon={faEdit} />
