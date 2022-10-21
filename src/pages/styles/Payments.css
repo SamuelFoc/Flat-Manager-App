@@ -1,0 +1,52 @@
+.paymentsMainSection {
+  width: 100vw;
+  max-height: 78vh;
+  display: flex;
+  justify-content: center;
+  overflow-y: visible;
+  position: relative;
+}
+.paymentsMainContainer {
+  padding: 1rem;
+  min-width: fit-content;
+  overflow-y: auto;
+  color: var(--text-color);
+  background-color: var(--glass-bcg-color);
+  backdrop-filter: blur(var(--glass-bcg-blur));
+  box-shadow: var(--glass-box-shadow);
+  border-radius: 5px;
+}
+.createPaymentButtonBox {
+  position: absolute;
+  top: -45px;
+  left: 5px;
+}
+.paymentsSubContainer {
+  padding: 20px 20px;
+  display: flex;
+}
+@media only screen and (max-width: 768px) {
+  .paymentsSubContainer {
+    display: block;
+  }
+}
+@media only screen and (max-width: 1068px) {
+  .paymentsSubContainer {
+    grid-template-columns: auto auto;
+  }
+}
+
+.paymentsMsg-success {
+  max-width: 80%;
+  background-color: rgba(33, 237, 18, 0.528);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+.paymentsMsg-denied {
+  max-width: 80%;
+  background-color: rgba(249, 27, 7, 0.632);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 18px;
+}
