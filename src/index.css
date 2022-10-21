@@ -62,7 +62,7 @@
   --nav-fs-title: 28px;
   --nav-fs-item: 18px;
   --nav-f-family: "Orbitron", sans-serif;
-  --sidenav-bcg-color: rgba(0, 0, 0, 0.245);
+  --sidenav-bcg-color: rgba(0, 0, 0, 0.708);
   --sidenav-radius: 8px;
   /* _______________________________________________________________ */
 
@@ -216,6 +216,25 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: var(--scrollbar-hover-color);
+}
+
+@media screen and (max-width: 480px) {
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-bcg-color);
+    border-radius: var(--scrollbar-radius);
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0);
+    border-radius: var(--scrollbar-radius);
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0);
+  }
 }
 /* _______________________________________________________________ */
 

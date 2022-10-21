@@ -116,7 +116,7 @@ const Rooms = (props) => {
               />
             ))
           ) : (
-            <h6 className=" m-2 text-light">There are no users in DB..</h6>
+            <h6 className=" m-2 text-light">There are no Rooms yet..</h6>
           )}
         </div>
         <button

@@ -65,7 +65,11 @@ const PaymentCard = (props) => {
         last_paid: new Date(),
       })
       .then(() => {
-        props.msg(`Payment ${props?.info?.title} registered on ${new Date()}.`);
+        props.msg(
+          `Payment ${
+            props?.info?.title
+          } registered on ${new Date().toLocaleDateString("en-GB")}.`
+        );
       })
       .catch((err) => {
         props.msg(`Payment failed due to ${err.message}.`);
@@ -82,7 +86,11 @@ const PaymentCard = (props) => {
         last_paid: new Date(),
       })
       .then(() => {
-        props.msg(`Payment ${props?.info?.title} deleted at ${new Date()}.`);
+        props.msg(
+          `Payment ${
+            props?.info?.title
+          } deleted at ${new Date().toLocaleDateString("en-GB")}.`
+        );
       })
       .catch((err) => {
         props.msg(`Payment deletion failed due to ${err.message}.`);
@@ -94,7 +102,7 @@ const PaymentCard = (props) => {
       {isOpen ? (
         <div className="openedPayment">
           <div className="d-flex justify-content-between">
-            <h4 className="text-primary fw-bold">{props?.info?.title}</h4>
+            <h4 className="paymentCardTitle fw-bold">{props?.info?.title}</h4>
             <div>
               <button className="btn btn-outline-warning me-2">
                 <FontAwesomeIcon

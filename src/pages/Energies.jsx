@@ -78,7 +78,7 @@ export default function Energies() {
 
   return (
     <div className="energiesMainSection">
-      <h3 className="energiesMainTitle">
+      <h3 className="custom-pill-box">
         Energy Records{" "}
         <FontAwesomeIcon
           icon={faPlus}
@@ -87,13 +87,13 @@ export default function Energies() {
         />
       </h3>
       <div className="energiesMainContainer">
-        <div className="row d-flex w-100">
+        <div className="row d-flex">
           <div className="col-12 col-xl-6 col-xxl-4 p-2 px-md-5">
             <h6 className="energiesSubTitle">
               Water consumption{" "}
-              <FontAwesomeIcon icon={faDroplet} className="low-priority" />
+              <FontAwesomeIcon icon={faDroplet} className="text-neutral" />
             </h6>
-            <div className="row m-2">
+            <div className="m-2">
               {energyData?.water?.length > 0 ? (
                 energyData?.water?.map((record) => (
                   <EnergyCard type="water" info={record} />
@@ -113,7 +113,7 @@ export default function Energies() {
                 className="high-priority"
               />
             </h6>
-            <div className="row m-2">
+            <div className="m-2">
               {energyData?.gas?.length > 0 ? (
                 energyData?.gas?.map((record) => (
                   <EnergyCard type="gas" info={record} />
@@ -130,7 +130,7 @@ export default function Energies() {
               Electricity consumption{" "}
               <FontAwesomeIcon icon={faPlug} className="text-success" />
             </h6>
-            <div className="row m-2">
+            <div className="m-2">
               {energyData?.electricity?.length > 0 ? (
                 energyData?.electricity?.map((record) => (
                   <EnergyCard info={record} type="electricity" />

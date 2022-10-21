@@ -114,7 +114,7 @@ export default function ShoppingList() {
 
   return (
     <div className="shoppingListMainSection">
-      <h3 className="shoppingListMainTitle">
+      <h3 className="custom-pill-box">
         Shopping List
         <FontAwesomeIcon
           icon={faPlus}

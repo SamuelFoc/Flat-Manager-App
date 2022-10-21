@@ -68,7 +68,13 @@ const LineChart = ({ chartData }) => {
           padding: 20,
           color: "white",
           font: {
-            size: 14,
+            size: function (context) {
+              var height = context?.chart?.height / 22;
+              if (height < 8) {
+                return 0;
+              }
+              return height;
+            },
           },
 
           major: {

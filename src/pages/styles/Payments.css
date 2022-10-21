@@ -1,14 +1,16 @@
 .paymentsMainSection {
-  width: 100vw;
-  max-height: 78vh;
+  position: relative;
+  min-width: 100vw;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   overflow-y: visible;
-  position: relative;
 }
 .paymentsMainContainer {
+  width: 100vw;
+  max-height: 60vh;
   padding: 1rem;
-  min-width: fit-content;
   overflow-y: auto;
   color: var(--text-color);
   background-color: var(--glass-bcg-color);
@@ -18,26 +20,22 @@
 }
 .createPaymentButtonBox {
   position: absolute;
-  top: -45px;
-  left: 5px;
+  top: 100px;
+  right: 5px;
+  z-index: 1;
 }
 .paymentsSubContainer {
-  padding: 20px 20px;
-  display: flex;
-}
-@media only screen and (max-width: 768px) {
-  .paymentsSubContainer {
-    display: block;
-  }
-}
-@media only screen and (max-width: 1068px) {
-  .paymentsSubContainer {
-    grid-template-columns: auto auto;
-  }
+  padding: 40px 20px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
 }
 
 .paymentsMsg-success {
-  max-width: 80%;
+  max-width: 300px;
   background-color: rgba(33, 237, 18, 0.528);
   padding: 10px 20px;
   border-radius: 5px;
@@ -49,4 +47,19 @@
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 18px;
+}
+
+@media only screen and (max-width: 480px) {
+  .paymentsMainSection {
+    max-height: 60vh;
+    max-width: 70vw;
+  }
+  .paymentsSubContainer {
+    grid-template-columns: auto;
+  }
+}
+@media only screen and (min-width: 480) and (max-width: 1068px) {
+  .paymentsSubContainer {
+    grid-template-columns: auto auto;
+  }
 }

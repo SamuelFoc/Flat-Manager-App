@@ -34,3 +34,26 @@
   right: 0;
   margin: 10px;
 }
+.productCardBtnBox {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+@media only screen and (max-width: 480px) {
+  .productCard {
+    min-width: 180px;
+  }
+  .productCardTitle {
+    font-size: 14px;
+  }
+  .productCardText {
+    font-size: 12px;
+  }
+  .productCardIcon {
+    font-size: 30px;
+  }
+  .productCardSubIcon {
+    font-size: 13px;
+  }
+}

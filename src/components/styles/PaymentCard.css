@@ -47,3 +47,14 @@
   color: rgb(4, 182, 4);
   background-color: rgb(0, 0, 0);
 }
+
+@media only screen and (max-width: 480px) {
+  .openedPayment {
+    font-size: 13px;
+    min-width: 200px;
+  }
+  .paymentCardTitle {
+    font-size: 18px;
+    color: rgb(210, 196, 196);
+  }
+}

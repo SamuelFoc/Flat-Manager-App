@@ -88,14 +88,12 @@ const Payments = () => {
           onClick={showFormCreate}
         />
       </div>
+      {msg && (
+        <div className={error ? "paymentsMsg-denied" : "paymentsMsg-success"}>
+          {msg}
+        </div>
+      )}
       <div className="paymentsMainContainer">
-        {msg ? (
-          <div className={error ? "paymentsMsg-denied" : "paymentsMsg-success"}>
-            {msg}
-          </div>
-        ) : (
-          ""
-        )}
         <div className="paymentsSubContainer">
           {payments?.length > 0 ? (
             payments?.map((payment) => (

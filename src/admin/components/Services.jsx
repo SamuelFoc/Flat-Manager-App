@@ -103,7 +103,7 @@ const Services = (props) => {
               />
             ))
           ) : (
-            <h6 className=" m-2 text-light">There are no services in DB..</h6>
+            <h6 className=" m-2 text-light">There are no Services yet..</h6>
           )}
         </div>
         <button

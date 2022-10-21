@@ -31,7 +31,7 @@ function ProductCard(props) {
         <FontAwesomeIcon icon={faTruckFast} className="productCardSubIcon" />
         <strong className="productCardHighlight">{props.info.urgent}</strong>
       </div>
-      <div className="d-flex justify-content-center mt-2">
+      <div className="productCardBtnBox">
         <FontAwesomeIcon
           icon={faEdit}
           className="btn-custom-edit"

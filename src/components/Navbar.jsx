@@ -65,40 +65,49 @@ function Navbar() {
       <aside>
         <ul className="text-light align-items-center pt-3">
           <NavLink to="/admin">
-            <FontAwesomeIcon icon={faLock} className="nav-item mx-3" />
+            <FontAwesomeIcon icon={faLock} className="nav-item my-1 mx-2" />
           </NavLink>
           <NavLink to="/users">
-            <FontAwesomeIcon icon={faUsers} className="nav-item my-3" />
+            <FontAwesomeIcon icon={faUsers} className="nav-item my-1 mx-2" />
           </NavLink>
           <NavLink to="/rooms">
-            <FontAwesomeIcon icon={faCouch} className="nav-item mx-3" />
+            <FontAwesomeIcon icon={faCouch} className="nav-item my-1 mx-2" />
           </NavLink>
           <NavLink to="/shoppingList">
-            <FontAwesomeIcon icon={faCartShopping} className="nav-item my-3" />
+            <FontAwesomeIcon
+              icon={faCartShopping}
+              className="nav-item my-1 mx-2"
+            />
           </NavLink>
           <NavLink to="/responsibilities">
-            <FontAwesomeIcon icon={faBriefcase} className="nav-item my-3" />
+            <FontAwesomeIcon
+              icon={faBriefcase}
+              className="nav-item my-1 mx-2"
+            />
           </NavLink>
           <NavLink to="/mypayments">
-            <FontAwesomeIcon icon={faMoneyBillWave} className="nav-item mx-3" />
+            <FontAwesomeIcon
+              icon={faMoneyBillWave}
+              className="nav-item my-1 mx-2"
+            />
           </NavLink>
           <NavLink to="/energies">
             <FontAwesomeIcon
               icon={faFireFlameSimple}
-              className="nav-item my-3"
+              className="nav-item my-1 mx-2"
             />
           </NavLink>
           <NavLink to="/statistics">
-            <FontAwesomeIcon icon={faChartBar} className="nav-item my-3" />
+            <FontAwesomeIcon icon={faChartBar} className="nav-item my-1 mx-2" />
           </NavLink>
           <NavLink to="/services">
             <FontAwesomeIcon
               icon={faBellConcierge}
-              className="nav-item  my-3 ring"
+              className="nav-item  my-1 mx-2 ring"
             />
           </NavLink>
           <NavLink to="/logout">
-            <FontAwesomeIcon icon={faSignOut} className="nav-item my-3" />
+            <FontAwesomeIcon icon={faSignOut} className="nav-item my-1 mx-2" />
           </NavLink>
         </ul>
       </aside>

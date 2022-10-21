@@ -53,7 +53,7 @@ const Payments = (props) => {
   // TODO: DELETE USER
   const deletePayment = (paymentName) => {
     axiosPrivate
-      .delete(`/admin/payment/${paymentName}`)
+      .delete(`/admin/paymentAccount/${paymentName}`)
       .then(() => {
         props.showMsg(`Payment ${paymentName} deleted succesfully.`);
       })
@@ -102,7 +102,9 @@ const Payments = (props) => {
               />
             ))
           ) : (
-            <h6 className=" m-2 text-light">There are no payments in DB..</h6>
+            <h6 className=" m-2 text-light">
+              There are no Payment Accounts yet..
+            </h6>
           )}
         </div>
         <button
