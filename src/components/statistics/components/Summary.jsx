@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //Regular
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 //Solid
-import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
 import { faRightLong } from "@fortawesome/free-solid-svg-icons";
 import { faSun } from "@fortawesome/free-solid-svg-icons";
 import { faSquare } from "@fortawesome/free-solid-svg-icons";
@@ -12,6 +11,7 @@ import { faMoon } from "@fortawesome/free-solid-svg-icons";
 import { faPlugCircleBolt } from "@fortawesome/free-solid-svg-icons";
 import { faHandHoldingDollar } from "@fortawesome/free-solid-svg-icons";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
+import "./Summary.css";
 
 const Summary = () => {
   const [loading, setLoading] = useState(false);
@@ -44,8 +44,8 @@ const Summary = () => {
       ) : (
         <div className="mt-4">
           <div className="row mb-5">
-            <div className="d-flex align-items-center">
-              <h6 className="summaryTitle mb-0 me-5">Electricity</h6>
+            <div className="d-flex flex-column">
+              <h6 className="summaryTitle mb-0 mb-1">Electricity</h6>
               <div
                 className="summaryTitle"
                 data-bs-toggle="tooltip"
@@ -63,7 +63,7 @@ const Summary = () => {
                 </span>
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-6 summaryText">
               <div
                 className="p-2"
                 data-bs-toggle="tooltip"
@@ -102,7 +102,7 @@ const Summary = () => {
                 </span>
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-6 summaryText">
               <div
                 className="p-2"
                 data-bs-toggle="tooltip"
@@ -157,8 +157,8 @@ const Summary = () => {
             </div>
           </div>
           <div className="row mb-5">
-            <div className="d-flex align-items-center">
-              <h6 className="summaryTitle mb-0 me-5">Water</h6>
+            <div className="d-flex flex-column">
+              <h6 className="summaryTitle mb-0 mb-1">Water</h6>
               <div
                 className="summaryTitle"
                 data-bs-toggle="tooltip"
@@ -176,7 +176,7 @@ const Summary = () => {
                 </span>
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-6 summaryText">
               <div
                 className="p-2"
                 data-bs-toggle="tooltip"
@@ -215,7 +215,7 @@ const Summary = () => {
                 </span>
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-6 summaryText">
               <div
                 className="p-2"
                 data-bs-toggle="tooltip"
@@ -270,8 +270,8 @@ const Summary = () => {
             </div>
           </div>
           <div className="row">
-            <div className="d-flex align-items-center">
-              <h6 className="summaryTitle mb-0 me-5">Gas</h6>
+            <div className="d-flex flex-column">
+              <h6 className="summaryTitle mb-0 mb-1">Gas</h6>
               <div
                 className="summaryTitle"
                 data-bs-toggle="tooltip"
@@ -289,7 +289,7 @@ const Summary = () => {
                 </span>
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-6 summaryText">
               <div
                 className="p-2"
                 data-bs-toggle="tooltip"
@@ -328,7 +328,7 @@ const Summary = () => {
                 </span>
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-6 summaryText">
               <div
                 className="p-2"
                 data-bs-toggle="tooltip"

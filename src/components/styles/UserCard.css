@@ -5,10 +5,10 @@
   box-shadow: var(--card-shadow);
   min-width: 250px;
   max-width: fit-content;
-  animation-name: animateCard;
+  /* animation-name: animateCard;
   animation-duration: 8s;
   animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  animation-iteration-count: infinite; */
 }
 
 .userCardText {
@@ -49,5 +49,17 @@
   }
   100% {
     transform: translateY(0px);
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .userCardText {
+    font-size: 12px;
+  }
+  .userCardTitle {
+    font-size: 15px;
+  }
+  .userCard {
+    min-width: 230px;
   }
 }

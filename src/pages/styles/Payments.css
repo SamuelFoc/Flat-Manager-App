@@ -1,13 +1,15 @@
-.roomsMainSection {
+.paymentsMainSection {
+  position: relative;
   min-width: 100vw;
-  max-height: 78vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow-y: auto;
+  overflow-y: visible;
 }
-.roomsMainContainer {
+.paymentsMainContainer {
   width: 100vw;
+  max-height: 60vh;
   padding: 1rem;
   overflow-y: auto;
   color: var(--text-color);
@@ -16,7 +18,13 @@
   box-shadow: var(--glass-box-shadow);
   border-radius: 5px;
 }
-.roomsSubContainer {
+.createPaymentButtonBox {
+  position: absolute;
+  top: 100px;
+  right: 5px;
+  z-index: 1;
+}
+.paymentsSubContainer {
   padding: 40px 20px;
   display: grid;
   justify-content: center;
@@ -25,35 +33,33 @@
   grid-column-gap: 20px;
   grid-row-gap: 20px;
 }
-.roomsMsg-success {
+
+.paymentsMsg-success {
   max-width: 300px;
-  background-color: rgba(21, 176, 10, 0.819);
+  background-color: rgba(33, 237, 18, 0.528);
   padding: 10px 20px;
   border-radius: 5px;
-  font-size: 16px;
-  font-weight: 600;
-  color: rgba(244, 236, 236, 0.921);
+  font-size: 18px;
 }
-.roomsMsg-denied {
-  background-color: rgba(194, 39, 25, 0.963);
+.paymentsMsg-denied {
+  max-width: 80%;
+  background-color: rgba(249, 27, 7, 0.632);
   padding: 10px 20px;
   border-radius: 5px;
-  font-size: 16px;
-  font-weight: 600;
-  color: rgba(244, 236, 236, 0.921);
+  font-size: 18px;
 }
 
 @media only screen and (max-width: 480px) {
-  .roomsMainSection {
+  .paymentsMainSection {
     max-height: 60vh;
     max-width: 70vw;
   }
-  .roomsSubContainer {
+  .paymentsSubContainer {
     grid-template-columns: auto;
   }
 }
 @media only screen and (min-width: 480) and (max-width: 1068px) {
-  .roomsSubContainer {
+  .paymentsSubContainer {
     grid-template-columns: auto auto;
   }
 }

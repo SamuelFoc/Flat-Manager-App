@@ -107,7 +107,7 @@ export default function Responsibilities() {
 
   return (
     <div className="responsibilitiesMainSection">
-      <h3 className="responsibilitiesMainTitle">
+      <h3 className="custom-pill-box">
         My Responsibilities{" "}
         <FontAwesomeIcon
           icon={faPlus}
@@ -125,7 +125,7 @@ export default function Responsibilities() {
                 className="critical-priority"
               />
             </h6>
-            <div className="row m-2">
+            <div className="m-2">
               {critical?.length ? (
                 critical.map((resp) => (
                   <RespCard
@@ -150,7 +150,7 @@ export default function Responsibilities() {
                 className="high-priority"
               />
             </h6>
-            <div className="row m-2">
+            <div className="m-2">
               {high?.length ? (
                 high.map((resp) => (
                   <RespCard
@@ -175,7 +175,7 @@ export default function Responsibilities() {
                 className="low-priority"
               />
             </h6>
-            <div className="row m-2">
+            <div className="m-2">
               {low?.length ? (
                 low.map((resp) => (
                   <RespCard

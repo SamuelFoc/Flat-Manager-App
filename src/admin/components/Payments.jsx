@@ -39,7 +39,9 @@ const Payments = (props) => {
   const formConfig = {
     type: "small",
     submit: {
-      url: paymentName ? `/admin/payment/${paymentName}` : "admin/payment",
+      url: paymentName
+        ? `/admin/paymentAccount/${paymentName}`
+        : "admin/paymentAccount",
       method: paymentName ? "put" : "post",
       data: formData,
     },
@@ -51,7 +53,7 @@ const Payments = (props) => {
   // TODO: DELETE USER
   const deletePayment = (paymentName) => {
     axiosPrivate
-      .delete(`/admin/payment/${paymentName}`)
+      .delete(`/admin/paymentAccount/${paymentName}`)
       .then(() => {
         props.showMsg(`Payment ${paymentName} deleted succesfully.`);
       })
@@ -63,7 +65,7 @@ const Payments = (props) => {
   return (
     <div className="w-100">
       <div className="d-flex align-items-center justify-content-between">
-        <h3>Payments</h3>
+        <h3>Payment Accounts</h3>
         {!showPayments ? (
           <button
             className="btn btn-outline-warning my-2"
@@ -100,7 +102,9 @@ const Payments = (props) => {
               />
             ))
           ) : (
-            <h6 className=" m-2 text-light">There are no payments in DB..</h6>
+            <h6 className=" m-2 text-light">
+              There are no Payment Accounts yet..
+            </h6>
           )}
         </div>
         <button

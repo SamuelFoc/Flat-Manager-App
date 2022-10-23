@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import "./Admin.css";
+import "./Admin_phone.css";
 import { axiosPrivate } from "../api/axios";
 import Services from "./components/Services";
 // AXIOS SET
@@ -24,7 +25,7 @@ const Admin = () => {
 
   useEffect(() => {
     const getData = async () => {
-      await axiosPrivate.get("/admin/payments").then((payments) => {
+      await axiosPrivate.get("/admin/paymentAccounts").then((payments) => {
         setPayment(payments.data.data);
       });
       await axiosPrivate.get("/admin/energies").then((energies) => {

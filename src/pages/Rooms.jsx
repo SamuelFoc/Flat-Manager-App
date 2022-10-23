@@ -71,21 +71,25 @@ const Rooms = () => {
 
   return (
     <section className="roomsMainSection">
+      <div className={msg.status ? "roomsMsg-success" : "roomsMsg-denied"}>
+        {msg.message}
+      </div>
       <div className="roomsMainContainer">
-        <div className={msg.status ? "roomsMsg-success" : "roomsMsg-denied"}>
-          {msg.message}
-        </div>
         <div className="roomsSubContainer">
-          {rooms?.map((room, i) => (
-            <Room
-              key={i}
-              name={room?.name}
-              opened={openedRooms.includes(room?.name)}
-              openRoom={openRoom}
-              pay={pay}
-              msg={msg}
-            />
-          ))}
+          {rooms?.length > 0 ? (
+            rooms?.map((room, i) => (
+              <Room
+                key={i}
+                name={room?.name}
+                opened={openedRooms.includes(room?.name)}
+                openRoom={openRoom}
+                pay={pay}
+                msg={msg}
+              />
+            ))
+          ) : (
+            <h3>There are no rooms yet..</h3>
+          )}
         </div>
       </div>
     </section>

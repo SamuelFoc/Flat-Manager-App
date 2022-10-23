@@ -1,4 +1,4 @@
-.room {
+.payment {
   width: 150px;
   height: 150px;
   display: flex;
@@ -13,20 +13,28 @@
   box-shadow: var(--card-shadow);
   user-select: none;
 }
-.room > * {
+.payment > * {
   color: var(--card-title-color);
 }
-.room:hover {
+.payment:hover {
   transform: translateY(-10px);
   cursor: pointer;
   background-color: rgba(92, 92, 92, 0.461);
 }
 
-.openedRoom {
+.openedPayment {
+  min-width: 300px;
   padding: 20px;
   border-radius: 15px;
   border: 1px solid rgba(146, 144, 144, 0.451);
   background-color: rgba(0, 0, 0, 0.547);
+}
+.paymentMsgBox {
+  background-color: rgb(67, 70, 73);
+  padding: 5px 15px;
+  border-radius: 3px;
+  max-width: 250px;
+  margin-bottom: 10px;
 }
 .qrcodeImg {
   background-color: rgba(255, 255, 255, 0.863);
@@ -41,7 +49,12 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .openedRoom {
+  .openedPayment {
     font-size: 13px;
+    min-width: 200px;
+  }
+  .paymentCardTitle {
+    font-size: 18px;
+    color: rgb(210, 196, 196);
   }
 }
