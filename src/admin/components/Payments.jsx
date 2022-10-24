@@ -39,7 +39,9 @@ const Payments = (props) => {
   const formConfig = {
     type: "small",
     submit: {
-      url: paymentName ? `/admin/payment/${paymentName}` : "admin/payment",
+      url: paymentName
+        ? `/admin/paymentAccounts/${paymentName}`
+        : "admin/paymentAccounts",
       method: paymentName ? "put" : "post",
       data: formData,
     },
