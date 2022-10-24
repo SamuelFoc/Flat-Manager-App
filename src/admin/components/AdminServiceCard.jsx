@@ -8,30 +8,27 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 const ServiceCard = (props) => {
   return (
     <div className="adminServiceCard medium-text m-1">
-      <div className="row align-items-center">
-        <div className="col-4">
+      <div className="row align-items-center text-center">
+        <div className="phoneCardText col-12 col-md-3">
           <span className="my-2">
             <FontAwesomeIcon icon={faCalendarCheck} />
             &emsp;
             {new Date(props?.info?.createdAt).toLocaleDateString("en-GB")}
           </span>
         </div>
-        <div className="col-2 d-flex align-items-center">
-          {props?.info?.name}
+        <div className="phoneCardText col-12 col-md-2">{props?.info?.name}</div>
+        <div className="phoneCardText col-12 col-md-4">
+          {props?.info?.unit_price
+            ? props?.info?.unit_price
+            : props?.info?.monthly_price}
+          &ensp;
+          {`CZK${
+            props?.info?.unit
+              ? `/${props?.info?.unit}`
+              : ` payed by ${props?.info?.pay_day}th`
+          }`}
         </div>
-        <div className="col-6 align-items-center d-flex justify-content-end">
-          <span className="d-flex align-items-center">
-            &emsp;
-            {props?.info?.unit_price
-              ? props?.info?.unit_price
-              : props?.info?.monthly_price}
-            &ensp;
-            {`CZK${
-              props?.info?.unit
-                ? `/${props?.info?.unit}`
-                : ` payed by ${props?.info?.pay_day}th`
-            }`}
-          </span>
+        <div className="col-12 col-md-3 align-items-center d-flex justify-content-md-end justify-content-center">
           <button
             type="button"
             className="btn btn-outline-warning ms-4"

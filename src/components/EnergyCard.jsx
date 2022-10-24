@@ -7,8 +7,8 @@ import { faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
 export default function EnergyCard(props) {
   return (
     <div className="energyCard m-1">
-      <div className="row energyCardText">
-        <div className="col-4">
+      <div className="row energyCardText text-center">
+        <div className="col-12 col-md-5">
           <span>
             <FontAwesomeIcon
               icon={faCalendarPlus}
@@ -20,10 +20,10 @@ export default function EnergyCard(props) {
             })}
           </span>
         </div>
-        <div className="col-2 d-flex align-items-center">
+        <div className="col-6 col-md-2 align-items-center">
           {props?.info?.type}
         </div>
-        <div className="col-6 align-items-center d-flex justify-content-end">
+        <div className="col-6 col-md-5 align-items-center d-flex justify-content-md-end">
           <FontAwesomeIcon icon={faRuler} className="energyCardSubIcon" />
           <span className="d-flex align-items-center">
             &emsp;{props?.info?.measured_value}&ensp;

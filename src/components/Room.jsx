@@ -23,7 +23,9 @@ const Room = (props) => {
 
   useEffect(() => {
     const getPayment = async () => {
-      const paymentData = await (await axiosPrivate("/payments/")).data.data[0];
+      const paymentData = await (
+        await axiosPrivate("/paymentAccounts/")
+      ).data.data[0];
       const qrText = `SPD*1.0*ACC:${paymentData?.iban?.replace(/\s/g, "")}*AM:${
         room?.cost
       }*CC:${paymentData?.currency}*MSG:Rent from ${props?.name}.`;

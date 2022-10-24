@@ -26,7 +26,7 @@ function RespCard(props) {
 
   return (
     <div className="respCard">
-      <div className="row">
+      <div className="d-flex">
         <div className={"col-6 respCardTitle" + checkClass(props.info.urgent)}>
           <h6 className="my-2">
             {props.info.title}
@@ -40,7 +40,7 @@ function RespCard(props) {
             />
           </h6>
         </div>
-        <div className="col-6 d-flex justify-content-end">
+        <div className="col-6 d-flex justify-content-end respCardBtns">
           {props.info.done ? (
             <button
               className="btn-custom-edit"
@@ -65,12 +65,12 @@ function RespCard(props) {
         </div>
       </div>
       <div className="row d-flex align-items-center">
-        <div className="col-7 respCardText text-start">
+        <div className="col-12 col-md-7 respCardText text-start">
           {props.info.description}
         </div>
         <div
           className={
-            "col-5 text-end pe-3 pt-1 respCardHighlight" +
+            "col-12 col-md-5 text-end pe-3 pt-1 respCardHighlight" +
             checkClass(props.info.urgent)
           }
         >

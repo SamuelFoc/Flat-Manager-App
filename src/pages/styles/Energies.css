@@ -31,7 +31,7 @@
   margin-left: 1rem;
 }
 
-@media only screen and (max-width: 1068px) {
+@media only screen and (min-width: 480px) and (max-width: 1068px) {
   .energiesMainContainer {
     justify-content: start;
   }

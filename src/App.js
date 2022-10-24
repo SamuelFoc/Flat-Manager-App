@@ -12,9 +12,9 @@ import { Routes, Route } from "react-router-dom";
 import Admin from "./admin/Admin";
 import Logout from "./pages/Logout";
 import Services from "./pages/Services";
-import Events from "./pages/Events";
 import Statistics from "./pages/Statistics";
 import Rooms from "./pages/Rooms";
+import MyPayments from "./pages/Payments";
 
 const ROLES = {
   User: "User",
@@ -46,7 +46,7 @@ function App() {
             <Route path="/energies" element={<Energies />} />
             <Route path="/statistics" element={<Statistics />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/events" element={<Events />} />
+            <Route path="/mypayments" element={<MyPayments />} />
           </Route>
 
           <Route path="*" element={<Error />} />
