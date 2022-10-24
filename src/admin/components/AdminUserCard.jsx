@@ -20,7 +20,7 @@ const UserCard = (props) => {
             ", " +
             new Date(props?.info?.createdAt)?.toLocaleTimeString("en-GB")}
         </div>
-        <div className="phoneCardText col-12 col-md-6 align-items-center d-flex justify-content-md-end justify-content-center">
+        <div className="phoneCardText col-12 col-md-4 align-items-center d-flex justify-content-md-end justify-content-center">
           <button
             type="button"
             className="btn btn-outline-warning ms-md-4"
